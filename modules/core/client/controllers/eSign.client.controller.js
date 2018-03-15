@@ -27,7 +27,7 @@ function eSignController($scope, $state, $modal, Authentication, $http, FileUplo
     $scope.upload = function (file) {
        
         $scope.uploader.onBeforeUploadItem = function (fileItem) {
-           alert("File Item is "+fileItem);
+          // alert("File Item is "+fileItem);
             var data4 = JSON.stringify($scope.choices);
             fileItem.formData.push({ "invitee": data4 });
             console.log(data4);
