@@ -1,0 +1,62 @@
+<section ng-controller="HomeController">
+    <div class="content">
+        <div class="newDoc">
+            <a ui-sref="new_doc" href="https://ia800100.us.archive.org/31/items/prakash_lexstart_Logo_20171130/logo.png" class="btn btn-lg btn-primary addbtn">
+                <i class="glyphicon glyphicon-plus plus-icon" style="top:-3px"></i>
+                <span style="color:#45afde;">E-Sign New Document</span>
+            </a>
+        </div>
+        <div class="row" style="max-width:80%;display:block;margin:0 auto;">
+            <div class="col-md-5">
+                <div class="box-info">
+                    <span class="info-box-icon bg-gray">
+                        <i class="glyphicon glyphicon-floppy-disk top-20"></i>
+                    </span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Drafts</span>
+                        <span class="info-box-number ng-binding">0</span>
+                        <a ui-sref="drafts" class="pull-right" href="modules/core/client/views/drafts.client.view.html" style="margin-top:20px;">Details &gt;</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 secondbox">
+                <div class="box-info">
+                    <span class="info-box-icon bg-gray">
+                        <i class="glyphicon glyphicon-send top-20"></i>
+                    </span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Sent</span>
+                        <span class="info-box-number ng-binding">0</span>
+                        <a ui-sref="sent" class="pull-right" href="modules/core/client/views/sent.client.view.html" style="margin-top:20px;">Details &gt;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="max-width:80%;display:block;margin:0 auto;">
+            <div class="col-md-5">
+                <div class="box-info">
+                    <span class="info-box-icon bg-gray">
+                        <i class="glyphicon glyphicon-eye-open top-20"></i>
+                    </span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Received</span>
+                        <span class="info-box-number ng-binding">0</span>
+                        <a ui-sref="received" class="pull-right" href="modules/core/client/views/received.client.view.html" style="margin-top:20px;">Details &gt;</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 secondbox">
+                <div class="box-info">
+                    <span class="info-box-icon bg-gray">
+                        <i class="glyphicon glyphicon-ok top-20"></i>
+                    </span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Completed</span>
+                        <span class="info-box-number ng-binding">0</span>
+                        <a ui-sref="completed" class="pull-right" href="modules/core/client/views/completed.client.view.html" style="margin-top:20px;">Details &gt;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

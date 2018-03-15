@@ -1,0 +1,58 @@
+<aside class="main-sidebar">
+    <section class="sidebar">
+        <ul class="sidebar-menu">
+            <li>
+                <a ui-sref="new_doc" href="modules/core/client/views/new_doc.client.view.html">
+                    <i class="glyphicon glyphicon-file"></i> &nbsp;
+                    <span>New Document</span>
+                </a>
+            </li>
+            <li class="treeview">
+                <a data-toggle="collapse" href="#doclibrary" aria-expanded="false" aria-controls="doclibrary">
+                    <i class="glyphicon glyphicon-folder-open"></i> &nbsp;
+                    <span>Document Library</span>
+                    <span class="pull-right-container">
+                    </span>
+                </a>
+                <ul class="treeview-menu" id="doclibrary">
+                    <li>
+                        <a ui-sref="drafts" href="modules/core/client/views/drafts.client.view.html">
+                            <i class="glyphicon glyphicon-floppy-disk"></i> &nbsp;
+                            <span>Draft</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="sent" href="modules/core/client/views/sent.client.view.html">
+                            <i class="glyphicon glyphicon-send"></i> &nbsp;
+                            <span>Sent </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="received" href="modules/core/client/views/received.client.view.html">
+                            <i class="glyphicon glyphicon-eye-open"></i> &nbsp;
+                            <span> Received </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="completed" href="modules/core/client/views/completed.client.view.html">
+                            <i class="glyphicon glyphicon-ok"></i> &nbsp;
+                            <span> Completed </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a ui-sref="settings.profile" href="modules/users/client/views/settings/edit-profile.client.view.html">
+                    <i class="glyphicon glyphicon-cog"></i> &nbsp;
+                    <span>Settings</span>
+                </a>
+            </li>
+            <li>
+                <a ui-sref="home" href="modules/core/client/views/home.client.view.html">
+                    <i class="glyphicon glyphicon-arrow-left"></i> &nbsp;
+                    <span>Back to Dashboard</span>
+                </a>
+            </li>
+        </ul>
+    </section>
+</aside>

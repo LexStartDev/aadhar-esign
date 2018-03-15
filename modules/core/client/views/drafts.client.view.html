@@ -1,0 +1,92 @@
+<section class="container-fluid" data-ng-controller="eSignController">
+    <section class="content-header ng-scope">
+        <h1> Documents
+            <small>Drafts</small>
+        </h1>
+    </section>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Draft Documents</h3>
+                </div>
+                <div class="box-body">
+                    <div class="row" style="padding:5px;">
+                        <div class="col-md-5" style="float:left;">
+                            <input type="text" id="query" ng-model="query" placeholder="Search" style="height:30px;width:60%;margin:15px;border-radius:5px;border:2px solid #F1F1F1;font-size:15px;">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <b>Id: </b>
+                                                </td>
+                                                <td>12345866</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <b>Name: </b>
+                                                </td>
+                                                <td>Abcdertd</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <b>Created at: </b>
+                                                </td>
+                                                <td>1/1/18</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <b>Status: </b>
+                                                </td>
+                                                <td>Draft</td>
+                                            </tr>
+                                        </table>
+                                        <div class="row">
+                                            <div class="col-md-12 text-left" style="margin-top:5px;margin-bottom:8px;">
+                                                <a href="#" ng-click="open()" class="ng-binding"> Supporting Documents </a>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12" style="margin-top:5px;margin-bottom:5px;">
+                                                <table style="background-color:#5b6670;border-radius:5px;text-align:center;">
+                                                    <tr>
+                                                        <td>
+                                                            <a href="#">
+                                                                <i class="glyphicon glyphicon-eye-open" title="Preview" style="color:white;"></i>
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#">
+                                                                <i class="glyphicon glyphicon-folder-open" title="Open" style="color:white;"></i>
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#">
+                                                                <i class="glyphicon glyphicon-pencil" title="Edit" style="color:white;"></i>
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="#">
+                                                                <i class="glyphicon glyphicon-trash" title="Delete" style="color:white;"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,380 @@
+<section class="container-fluid" ng-controller="eSignController" ng-app="app">
+    <section class="content-header ng-scope">
+        <h1> Aadhar E-Sign
+        </h1>
+    </section>
+    <section>
+        <div class="row">
+            <div class="col-md-8" style="left: 23%;top: 100px;">
+                <div class="box" style="box-shadow: 0 4px 16px -2px rgba(0,0,0,.1), 0 0 0 1px rgba(0,0,0,.02);">
+                    <div class="box-header">
+                        <h3 class="box-title pull-center">Initiate E-Sign Process</h3>
+                        <div ng-controller="eSignController" ng-app="app"></div><br><br>
+                 <form id="userForm" name="userForm" ng-submit="upload()" novalidate>
+                        <fieldset  data-ng-repeat="choice in choices">
+                        <input  name="username" minlength="2" style="width: 40%;
+                           border: 0px;
+                           border-radius: 10px;
+                           background: #f1f1f1;
+                           padding-left: 2px;
+                           outline: 0px;
+                           margin:5px;
+                           height: 45px;" type="text" ng-model="choice.name" name="name" placeholder="Enter  Name">
+                          
+                           <input  style="width: 40%;
+                              border: 0px;
+                              border-radius: 10px;
+                              background: #f1f1f1;
+                              padding-left: 2px;
+                              outline: 0px;
+                              margin:5px;
+                              height: 40px;" type="email" ng-model="choice.email" name="email" placeholder="Enter email">
+                             
+                           <button class="remove" ng-show="$last" ng-click="removeChoice()">-</button>
+                        </fieldset><br>
+                        <button class="addfields" style="color: #a1488a;
+                        border-radius: 10px;
+                        width: 100px;
+                        height: 40px;" ng-click="addNewChoice()"> Add Invitees</button><br><br>
+                        <input name="file" class="form-group" type="file" accept=".pdf" nv-file-select uploader="uploader">
+                        <p  ng-show="userForm.file.$error" class="help-block">Please upload the file</p>
+                    </div>
+        
+                    <div class="box-footer clearfix">
+                            <p style="color:red" ng-show="userForm.username.$error.minlength" class="help-block">Please enter the name.</p>
+                            <p style="color:red" ng-show="userForm.email.$invalid" class="help-block">Enter a valid email.</p>
+                        <div class="pull-right">
+                            
+                            <button type="submit" class="btn btn-primary ng-binding"  ng-disabled="userForm.$invalid"  ng-click="upload()"> Proceed to Sign </button>
+                        </div>
+                    </div>
+                </form>
+                </div>
+
+                <!-- <form ref='uploadForm' id='uploadForm' action='http://dev.lexstart.in/api/v2/zohoSave' method='post' encType="multipart/form-data">
+                    <input type="file" ng-model="post.sample" name="sampleFile" />
+                    <input type='submit' value='kar upload be!' />
+                </form> -->
+                <!-- <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Preview</h3>
+                    </div>
+                    <div class="box-body">
+                        <table style="text-align:center;">
+                            <tbody>
+                                <tr>
+                                    <th>Sr No.</th>
+                                    <th>Document Name</th>
+                                    <th>Preview</th>
+                                    <th>E-sign</th>
+                                </tr>
+                                <tr>
+                                    <td> {{$index + 1}} </td>
+                                    <td>abcd.pdf</td>
+                                    <td>
+                                        <button id="preview">
+                                            <i class="glyphicon glyphicon-eye-open"></i>
+                                        </button>
+                                        <div id="myModal" class="modal">
+                                            <div class="modal-content" style="padding:0;">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <a href="#" style="float:right;margin-right:3%;margin-top:5px;">Download</a>
+                                                    <h4 class="modal-title" style="float:left;">Preview</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Some text in the modal.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="1516786729860" value="1516786729860" ng-click="" checked="">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="box-footer clearfix">
+                        <div class="pull-right">
+                            <a class="btn btn-primary ng-binding" ng-click=""> Continue </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Self sign</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="selfsign_box">
+                                    <div class="selfsign_boxbody">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Aadhar Number</label>
+                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty" placeholder="Enter aadhaar number">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Name</label>
+                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty" placeholder="Enter your Fullname">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Location (Optional)</label>
+                                                    <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" placeholder="Enter your location">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom:10px;">
+                            <div class="col-md-12 text-right">
+                                <a href="" ng-click="" class="ng-binding" data-toggle="collapse" data-target="#org_option" style="padding-right:12px;"> Show Organisational Options </a>
+                            </div>
+                        </div>
+                        <div class="collapse" id="org_option">
+                            <div class="row">
+                                <div class="col-md-1">
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="sup_docbox">
+                                        <div class="box-body">
+                                            <div class="row ng-scope">
+                                                <div class="form-group col-md-5">
+                                                    <label style="margin-left:22px;margin-top:5px;">Add Supporting Documents (Optional)</label>
+                                                    <select class="form-control ng-pristine ng-untouched ng-valid ng-empty" style="margin-left:20px;">
+                                                        <option value="" selected="selected">Select Document Type</option>
+                                                        <option label="Proof of Authorized Signatory" value="string:AS">Proof of Authorized Signatory</option>
+                                                        <option label="Bank Cheque" value="string:BC">Bank Cheque</option>
+                                                        <option label="Photo" value="string:PHT">Photo</option>
+                                                        <option label="Others" value="string:OTH">Others</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row ng-scope">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-10">
+                                    <div class="sup_docbox">
+                                        <div class="box-body">
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-12" style="margin-left:15px;margin-top:5px;">
+                                                    <div class="form-group">
+                                                        <label>Organization Name (Optional)</label>
+                                                        <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" placeholder="Enter Organization Name"> </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-3 col-sm-12">
+                                                    <div class="form-group" style="padding-left:15px;">
+                                                        <label>eSign Impression</label>
+                                                        <br>
+                                                        <input type="radio" name="signPlacement" value="F" class="ng-pristine ng-untouched ng-valid ng-not-empty">&nbsp;&nbsp;First Page
+                                                        <br>
+                                                        <input type="radio" name="signPlacement" value="L" class="ng-pristine ng-untouched ng-valid ng-not-empty">&nbsp;&nbsp;Last Page
+                                                        <br>
+                                                        <input type="radio" name="signPlacement" value="A" class="ng-pristine ng-untouched ng-valid ng-not-empty">&nbsp;&nbsp;All Pages </div>
+                                                </div>
+                                                <div class="col-md-3 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label>Authentication Type</label>
+                                                        <br>
+                                                        <input type="radio" name="authenticationType" value="OTP" class="ng-pristine ng-untouched ng-valid ng-not-empty">&nbsp;&nbsp;One Time Password
+                                                        <br>
+                                                        <input type="radio" name="authenticationType" value="BIO" class="ng-pristine ng-untouched ng-valid ng-not-empty">&nbsp;&nbsp;Bio Metric </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <label>Signing Logo</label>
+                                                            <br>
+                                                         
+                                                            <img src="https://ia601502.us.archive.org/31/items/aadhar_201801/aadhar.png" width="140px" height="70px" class="ng-scope">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-9 no-padding">
+                                                            <div class="uploadFile">
+                                                                <div class="col-sm-12">
+                                                                    <label style="width: 140px" class="font-300">Upload Logo</label>
+                                                                </div>
+                                                                <p class="error ng-binding"></p>
+                                                                <input type="file" onchange="angular.element(this).scope().uploadLogo(this)" class="form-control hideFile" accept="image/png,image/jpeg,image/jpg">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer clearfix">
+                        <div class="row tnc">
+                            <div class="col-md-9">
+                                <div class="checkbox">
+                                    <span>
+                                        <input type="checkbox" name="tnc" id="tnc" class="ng-pristine ng-untouched ng-valid ng-empty"> I, the holder of the above entered Aadhaar Number, hereby state that I have no objection
+                                        in authenticating myself with Aadhaar based authentication system. I consent to providing
+                                        my Aadhaar number, Biometric and/or One Time Pin (OTP) data for the purposes of availing
+                                        of the Aadhaar eKYC based eSign Service from Grey Swift Private Limited, which is
+                                        an ASP with ESP (n)Code Solutions.
+                                        <br> I also agree to the
+                                        <a href="" target="_blank">Terms of Service</a>. </span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="pull-right">
+                                    <a class="btn btn-primary ng-binding" ng-click=""> Skip </a>
+                                    <a class="btn btn-primary ng-binding" ng-click=""> Sign </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Invite</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+
+                            <div class="col-md-11 text-right">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" class="ng-pristine ng-untouched ng-valid ng-empty"> Request Signing Order </label>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <button type="button" id="add" class="btn" ng-click="addReceiver(number,index)" style="border-radius:50%;margin-top:5px;">
+                                    <i class="glyphicon glyphicon-plus" title="Click to add new receiver"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="invite" class="selfsign_box">
+                                    <div class="row" style="padding:10px;">
+                                        <div class="col-md-1">
+                                       
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty ng-valid-required" placeholder="Enter invitee name"
+                                                required="">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <input type="email" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty ng-valid-required ng-valid-email"
+                                                placeholder="Enter invitee email" required="" ng-disabled="" disabled="disabled">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="dropdown">
+                                                <select class="form-control ng-pristine ng-untouched ng-valid ng-empty" style="margin-left:20px;">
+                                                    <option value="" selected="selected"> Requied Documents</option>
+                                                    <option label="Proof of Authorized Signatory" value="string:AS">Proof of Authorized Signatory</option>
+                                                    <option label="Bank Cheque" value="string:BC">Bank Cheque</option>
+                                                    <option label="Photo" value="string:PHT">Photo</option>
+                                                    <option label="Others" value="string:OTH">Others</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button type="button" class="btn btn-box-tool" id="close-div" style="background-color:white;" disabled>
+                                                <i class="glyphicon glyphicon-trash error" title="Click to delete"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="target"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <textarea class="form-control ng-pristine ng-untouched ng-valid ng-empty" style="margin-top:10px;margin-left:15px;width:96%;margin-bottom:20px;"
+                                    placeholder="Enter your message here (Optional)"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer clearfix">
+                        <div class="pull-right">
+                            <a class="btn btn-primary ng-binding" ng-click=""> Send </a>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </section>
+</section>
+<script>
+
+    // add invitee
+    // $("#add").click(function () {
+    //     $("#invite").append('<div id="invite" class="selfsign_box"> <div class="row" style="padding:10px;"> <div class="col-md-1"> 1 </div> <div class="col-md-3"> <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty ng-valid-required" placeholder="Enter invitee name" required=""> </div>  <div class="col-md-3"> <input type="email" class="form-control ng-pristine ng-untouched ng-valid ng-not-empty ng-valid-required ng-valid-email" placeholder="Enter invitee email" required=""> </div> <div class="col-md-3"> <div class="dropdown"> <select class="form-control ng-pristine ng-untouched ng-valid ng-empty" style="margin-left:20px;"> <option value="" selected="selected"> Requied Documents</option> <option label="Proof of Authorized Signatory" value="string:AS">Proof of Authorized Signatory</option>  <option label="Bank Cheque" value="string:BC">Bank Cheque</option> <option label="Photo" value="string:PHT">Photo</option> <option label="Others" value="string:OTH">Others</option> </select> </div> </div>  <div class="col-md-2"> <button type="button" class="btn btn-box-tool" ng-click="" style="background-color:white;"> <i class="glyphicon glyphicon-trash error" title="Click to delete"></i> </button> </div> </div> </div>');
+    // });
+
+    // remove invitee
+    $('html,body').on('click', '#close-div', function () {
+        $(this).parents('#invite').remove();
+    });
+
+    //upload multiple documents
+    var selDiv = "";
+
+    document.addEventListener("DOMContentLoaded", init, false);
+
+    function init() {
+        document.querySelector('#files').addEventListener('change', handleFileSelect, false);
+        selDiv = document.querySelector("#selectedFiles");
+    }
+
+    function handleFileSelect(e) {
+
+        if (!e.target.files) return;
+
+        selDiv.innerHTML = "";
+
+        var files = e.target.files;
+        for (var i = 0; i < files.length; i++) {
+            var f = files[i];
+
+            selDiv.innerHTML += f.name + "<br/>";
+
+        }
+
+    }
+
+    // Get the modal
+    var modal = document.getElementById('myModal');
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("preview");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on the button, open the modal 
+    btn.onclick = function () {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
