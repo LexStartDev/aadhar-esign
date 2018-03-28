@@ -67,8 +67,8 @@ exports.eSignDoc = function (req, res) {
 var filedata = req.files.file.data; 
 var request = require("request");
 var filename = req.files.file.name; 
-var name = req.user.firstName;
-var email = req.user.email;
+//var name = req.user.firstName;
+//var email = req.user.email;
 console.log("Length is  : ---- " + invitee_temp.length );
 
 
