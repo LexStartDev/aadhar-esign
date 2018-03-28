@@ -570,11 +570,12 @@ exports.eSignDoc = function (req, res) {
             });
           } else {
             //Write code to send emails to the invitees.
+            return res.status(200).send(body);
           }
         });
       }
      
-      return res.status(200).send(body);
+    
     }
   });
 
