@@ -104,7 +104,7 @@ exports.eSignDoc = function (req, res) {
             "invitees[0].name": invitee_temp[0].name,
             "invitees[0].email": invitee_temp[0].email,
             "invitees[0].emailNotification": "false",
-            "redirectUrl": "http://dev.lexstart.in:3000/api/v2/esigncomplete"
+            "redirectUrl": "http://lexstart.in/esigncomplete/success.html"
           }
       };
       break;
@@ -139,7 +139,7 @@ exports.eSignDoc = function (req, res) {
             "invitees[1].name": invitee_temp[1].name,
             "invitees[1].email": invitee_temp[1].email,
             "invitees[1].emailNotification": "false",
-            "redirectUrl": "http://dev.lexstart.in:3000/api/v2/esigncomplete"
+            "redirectUrl": "http://lexstart.in/esigncomplete/success.html"
 
           }
       };
@@ -558,12 +558,13 @@ exports.eSignDoc = function (req, res) {
     if (error) {
       throw new Error(error);
     } else {
-      console.log("console body is :"+body);
-      var signRequest = body.requests;
+      console.log("console body is :" + body);
+      console.log("parsed "+ JSON.parse(body));
+      var signRequest = JSON.parse(body);
       
-      for(var i = 0 ; i < signRequest.length ; i++) {
-        var newEsignDoc = new EsignDoc({ "name":signRequest[i].name, "email" : signRequest[i].email ,
-                  "signurl": signRequest[i].signurl , "signed":signRequest[i].signed,"rejected":signRequest[i].rejected,"revoked":signRequest[i].revoked });
+      for(var i = 0 ; i < signRequest.data.requests.length ; i++) {
+        var newEsignDoc = new EsignDoc({ "name":signRequest.data.requests[i].name, "email" : signRequest.data.requests[i].email ,
+                  "signurl": signRequest.data.requests[i].signurl , "signed":signRequest.data.requests[i].signed,"rejected":signRequest.data.requests[i].rejected,"revoked":signRequest.data.requests[i].revoked });
         newEsignDoc.save(function (err) {
           if (err) {
             return res.status(400).send({
@@ -571,11 +572,11 @@ exports.eSignDoc = function (req, res) {
             });
           } else {
             //Write code to send emails to the invitees.
-            return res.status(200).send(body);
           }
         });
       }
-     
+          return res.status(200).send(body);
+
     
     }
   });
