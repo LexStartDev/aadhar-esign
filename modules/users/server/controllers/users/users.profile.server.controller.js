@@ -3,15 +3,15 @@
 /**
  * Module dependencies.
  */
- //   var fs = require('fs');
+//   var fs = require('fs');
 
-  //   fs.readFile('req.files.file', function (err, data) {
-  //     console.log("rahul");
-  //   if (err) throw err;
-  //   console.log("this is data of the file acquired !")
-  //   console.log(typeof data); //OBJECT
-  //   const pdf = data.toString('base64'); //PDF WORKS
-  // });
+//   fs.readFile('req.files.file', function (err, data) {
+//     console.log("rahul");
+//   if (err) throw err;
+//   console.log("this is data of the file acquired !")
+//   console.log(typeof data); //OBJECT
+//   const pdf = data.toString('base64'); //PDF WORKS
+// });
 var _ = require('lodash'),
   fs = require('fs'),
   path = require('path'),
@@ -19,7 +19,10 @@ var _ = require('lodash'),
   mongoose = require('mongoose'),
   multer = require('multer'),
   config = require(path.resolve('./config/config')),
-  User = mongoose.model('User');
+  User = mongoose.model('User'),
+  EsignDoc = mongoose.model('EsignDoc');
+var path = require('path');
+var errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
 /**
  * Update user details
@@ -64,409 +67,516 @@ exports.update = function (req, res) {
  */
 exports.eSignDoc = function (req, res) {
   var invitee_temp = JSON.parse(req.body.invitee);
-var filedata = req.files.file.data; 
-var request = require("request");
-var filename = req.files.file.name; 
-//var name = req.user.firstName;
-//var email = req.user.email;
-console.log("Length is  : ---- " + invitee_temp.length );
+  var filedata = req.files.file.data;
+  var request = require("request");
+  var filename = req.files.file.name;
+  //var name = req.user.firstName;
+  //var email = req.user.email;
+  console.log("Length is  : ---- " + invitee_temp.length);
 
 
-switch (invitee_temp.length) {
+  switch (invitee_temp.length) {
 
-   case 1: 
-   console.log("rahul");
-   var options = { method: 'POST',
-  url: 'https://app.leegality.com/api/v1.0/sr/create',
-  headers: 
-   {  'Postman-Token': '9061024c-ba28-40ff-ad90-5d3beb789ffe',
-   'Cache-Control': 'no-cache',
-   'X-Auth-Token': 'OVQGQhc6YA23uH6uHe8qDwG5jkZ2M355',
-   Accept: 'application/json',
-   'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' },
-  formData: 
-   { 'files[0].file': 
-      { value: filedata,
-        options: 
-         { filename: filename,
-           contentType: null } },
-           "invitees[0].name" : invitee_temp[0].name ,
-           "invitees[0].email" : invitee_temp[0].email ,
-          "invitees[0].emailNotification": "false",
-          "redirectUrl": "http://dev.lexstart.in:3000/api/v2/esigncomplete"
-     } };
-     break;
-
-     case 2: 
-   console.log("rahul2");
-   var options = { method: 'POST',
-  url: 'https://app.leegality.com/api/v1.0/sr/create',
-  headers: 
-   {  'Postman-Token': '9061024c-ba28-40ff-ad90-5d3beb789ffe',
-   'Cache-Control': 'no-cache',
-   'X-Auth-Token': 'OVQGQhc6YA23uH6uHe8qDwG5jkZ2M355',
-   Accept: 'application/json',
-   'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' },
-  formData: 
-   { 'files[0].file': 
-      { value: filedata,
-        options: 
-         { filename: filename,
-           contentType: null } },
-           "invitees[0].name" : invitee_temp[0].name ,
-           "invitees[0].email" : invitee_temp[0].email ,
-           "invitees[0].emailNotification" : "false",
-           "invitees[1].name" : invitee_temp[1].name ,
-           "invitees[1].email" : invitee_temp[1].email ,
-           "invitees[1].emailNotification" : "false",
-      "redirectUrl": "http://dev.lexstart.in:3000/api/v2/esigncomplete"
-
-     } };
-     break;
-
-     case 3: 
-   console.log("rahul3");
-   var options = { method: 'POST',
-  url: 'https://app.leegality.com/api/v1.0/sr/create',
-  headers: 
-   {  'Postman-Token': '9061024c-ba28-40ff-ad90-5d3beb789ffe',
-   'Cache-Control': 'no-cache',
-   'X-Auth-Token': 'OVQGQhc6YA23uH6uHe8qDwG5jkZ2M355',
-   Accept: 'application/json',
-   'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' },
-  formData: 
-   { 'files[0].file': 
-      { value: filedata,
-        options: 
-         { filename: filename,
-           contentType: null } },
-           "invitees[0].name" : invitee_temp[0].name ,
-           "invitees[0].email" : invitee_temp[0].email ,
-           "invitees[0].emailNotification" : "false",
-           "invitees[1].name" : invitee_temp[1].name ,
-           "invitees[1].email" : invitee_temp[1].email ,
-           "invitees[1].emailNotification" : "false",
-           "invitees[2].name" : invitee_temp[2].name ,
-           "invitees[2].email" : invitee_temp[2].email ,
-           "invitees[2].emailNotification" : "false",
-      "redirectUrl": "http://lexstart.in/esigncomplete/success.html"
-
-     } };
-     break;
-
-     case 4: 
-     console.log("rahul4");
-     var options = { method: 'POST',
-    url: 'https://app.leegality.com/api/v1.0/sr/create',
-    headers: 
-     {  'Postman-Token': '9061024c-ba28-40ff-ad90-5d3beb789ffe',
-     'Cache-Control': 'no-cache',
-     'X-Auth-Token': 'OVQGQhc6YA23uH6uHe8qDwG5jkZ2M355',
-     Accept: 'application/json',
-     'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' },
-    formData: 
-     { 'files[0].file': 
-        { value: filedata,
-          options: 
-           { filename: filename,
-             contentType: null } },
-             "invitees[0].name" : invitee_temp[0].name ,
-             "invitees[0].email" : invitee_temp[0].email ,
-             "invitees[0].emailNotification" : "false",
-             "invitees[1].name" : invitee_temp[1].name ,
-             "invitees[1].email" : invitee_temp[1].email ,
-             "invitees[1].emailNotification" : "false",
-             "invitees[2].name" : invitee_temp[2].name ,
-             "invitees[2].email" : invitee_temp[2].email ,
-             "invitees[2].emailNotification" : "false",
-             "invitees[3].name" : invitee_temp[3].name ,
-             "invitees[3].email" : invitee_temp[3].email ,
-             "invitees[3].emailNotification" : "false",
-        "redirectUrl": "http://lexstart.in/esigncomplete/success.html"
-
-       } };
-       
+    case 1:
+      console.log("rahul");
+      var options = {
+        method: 'POST',
+        url: 'https://app.leegality.com/api/v1.0/sr/create',
+        headers:
+          {
+            'Postman-Token': '9061024c-ba28-40ff-ad90-5d3beb789ffe',
+            'Cache-Control': 'no-cache',
+            'X-Auth-Token': 'OVQGQhc6YA23uH6uHe8qDwG5jkZ2M355',
+            Accept: 'application/json',
+            'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'
+          },
+        formData:
+          {
+            'files[0].file':
+              {
+                value: filedata,
+                options:
+                  {
+                    filename: filename,
+                    contentType: null
+                  }
+              },
+            "invitees[0].name": invitee_temp[0].name,
+            "invitees[0].email": invitee_temp[0].email,
+            "invitees[0].emailNotification": "false",
+            "redirectUrl": "http://dev.lexstart.in:3000/api/v2/esigncomplete"
+          }
+      };
       break;
 
-      case 5: 
-      console.log("rahul5");
-      var options = { method: 'POST',
-     url: 'https://app.leegality.com/api/v1.0/sr/create',
-     headers: 
-      {  'Postman-Token': '9061024c-ba28-40ff-ad90-5d3beb789ffe',
-      'Cache-Control': 'no-cache',
-      'X-Auth-Token': 'OVQGQhc6YA23uH6uHe8qDwG5jkZ2M355',
-      Accept: 'application/json',
-      'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' },
-     formData: 
-      { 'files[0].file': 
-         { value: filedata,
-           options: 
-            { filename: filename,
-              contentType: null } },
-              "invitees[0].name" : invitee_temp[0].name ,
-              "invitees[0].email" : invitee_temp[0].email ,
-              "invitees[0].emailNotification" : "false",
-              "invitees[1].name" : invitee_temp[1].name ,
-              "invitees[1].email" : invitee_temp[1].email ,
-              "invitees[1].emailNotification" : "false",
-              "invitees[2].name" : invitee_temp[2].name ,
-              "invitees[2].email" : invitee_temp[2].email ,
-              "invitees[2].emailNotification" : "false",
-              "invitees[3].name" : invitee_temp[3].name ,
-              "invitees[3].email" : invitee_temp[3].email ,
-              "invitees[3].emailNotification" : "false",
-              "invitees[4].name" : invitee_temp[4].name ,
-              "invitees[4].email" : invitee_temp[4].email ,
-              "invitees[4].emailNotification" : "false",
-         "redirectUrl": "http://lexstart.in/esigncomplete/success.html"
-
-         } };
-        
-       break;
-
-       case 6: 
-       console.log("rahul6");
-       var options = { method: 'POST',
-      url: 'https://app.leegality.com/api/v1.0/sr/create',
-      headers: 
-       {  'Postman-Token': '9061024c-ba28-40ff-ad90-5d3beb789ffe',
-       'Cache-Control': 'no-cache',
-       'X-Auth-Token': 'OVQGQhc6YA23uH6uHe8qDwG5jkZ2M355',
-       Accept: 'application/json',
-       'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' },
-      formData: 
-       { 'files[0].file': 
-          { value: filedata,
-            options: 
-             { filename: filename,
-               contentType: null } },
-               "invitees[0].name" : invitee_temp[0].name ,
-               "invitees[0].email" : invitee_temp[0].email ,
-               "invitees[0].emailNotification" : "false",
-               "invitees[1].name" : invitee_temp[1].name ,
-               "invitees[1].email" : invitee_temp[1].email ,
-               "invitees[1].emailNotification" : "false",
-               "invitees[2].name" : invitee_temp[2].name ,
-               "invitees[2].email" : invitee_temp[2].email ,
-               "invitees[2].emailNotification" : "false",
-               "invitees[3].name" : invitee_temp[3].name ,
-               "invitees[3].email" : invitee_temp[3].email ,
-               "invitees[3].emailNotification" : "false",
-               "invitees[4].name" : invitee_temp[4].name ,
-               "invitees[4].email" : invitee_temp[4].email ,
-               "invitees[4].emailNotification" : "false",
-               "invitees[5].name" : invitee_temp[5].name ,
-               "invitees[5].email" : invitee_temp[5].email ,
-               "invitees[5].emailNotification" : "false",
-          "redirectUrl": "http://lexstart.in/esigncomplete/success.html"
-
-          } };
-         
-        break;
-          
-        case 7: 
-        console.log("rahul6");
-        var options = { method: 'POST',
-       url: 'https://app.leegality.com/api/v1.0/sr/create',
-       headers: 
-        {  'Postman-Token': '9061024c-ba28-40ff-ad90-5d3beb789ffe',
-        'Cache-Control': 'no-cache',
-        'X-Auth-Token': 'OVQGQhc6YA23uH6uHe8qDwG5jkZ2M355',
-        Accept: 'application/json',
-        'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' },
-       formData: 
-        { 'files[0].file': 
-           { value: filedata,
-             options: 
-              { filename: filename,
-                contentType: null } },
-                "invitees[0].name" : invitee_temp[0].name ,
-                "invitees[0].email" : invitee_temp[0].email ,
-                "invitees[0].emailNotification" : "false",
-                "invitees[1].name" : invitee_temp[1].name ,
-                "invitees[1].email" : invitee_temp[1].email ,
-                "invitees[1].emailNotification" : "false",
-                "invitees[2].name" : invitee_temp[2].name ,
-                "invitees[2].email" : invitee_temp[2].email ,
-                "invitees[2].emailNotification" : "false",
-                "invitees[3].name" : invitee_temp[3].name ,
-                "invitees[3].email" : invitee_temp[3].email ,
-                "invitees[3].emailNotification" : "false",
-                "invitees[4].name" : invitee_temp[4].name ,
-                "invitees[4].email" : invitee_temp[4].email ,
-                "invitees[4].emailNotification" : "false",
-                "invitees[5].name" : invitee_temp[5].name ,
-                "invitees[5].email" : invitee_temp[5].email ,
-                "invitees[5].emailNotification" : "false",
-                "invitees[6].name" : invitee_temp[6].name ,
-                "invitees[6].email" : invitee_temp[6].email ,
-                "invitees[6].emailNotification" : "false",
-           "redirectUrl": "http://lexstart.in/esigncomplete/success.html"
-
-           } };
-          
-         break;
-        
-         case 8: 
-         console.log("rahul8");
-         var options = { method: 'POST',
+    case 2:
+      console.log("rahul2");
+      var options = {
+        method: 'POST',
         url: 'https://app.leegality.com/api/v1.0/sr/create',
-        headers: 
-         {  'Postman-Token': '9061024c-ba28-40ff-ad90-5d3beb789ffe',
-         'Cache-Control': 'no-cache',
-         'X-Auth-Token': 'OVQGQhc6YA23uH6uHe8qDwG5jkZ2M355',
-         Accept: 'application/json',
-         'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' },
-        formData: 
-         { 'files[0].file': 
-            { value: filedata,
-              options: 
-               { filename: filename,
-                 contentType: null } },
-                 "invitees[0].name" : invitee_temp[0].name ,
-                 "invitees[0].email" : invitee_temp[0].email ,
-                 "invitees[0].emailNotification" : "false",
-                 "invitees[1].name" : invitee_temp[1].name ,
-                 "invitees[1].email" : invitee_temp[1].email ,
-                 "invitees[1].emailNotification" : "false",
-                 "invitees[2].name" : invitee_temp[2].name ,
-                 "invitees[2].email" : invitee_temp[2].email ,
-                 "invitees[2].emailNotification" : "false",
-                 "invitees[3].name" : invitee_temp[3].name ,
-                 "invitees[3].email" : invitee_temp[3].email ,
-                 "invitees[3].emailNotification" : "false",
-                 "invitees[4].name" : invitee_temp[4].name ,
-                 "invitees[4].email" : invitee_temp[4].email ,
-                 "invitees[4].emailNotification" : "false",
-                 "invitees[5].name" : invitee_temp[5].name ,
-                 "invitees[5].email" : invitee_temp[5].email ,
-                 "invitees[5].emailNotification" : "false",
-                 "invitees[6].name" : invitee_temp[6].name ,
-                 "invitees[6].email" : invitee_temp[6].email ,
-                 "invitees[6].emailNotification" : "false",
-                 "invitees[7].name" : invitee_temp[7].name ,
-                 "invitees[7].email" : invitee_temp[7].email ,
-                 "invitees[7].emailNotification" : "false",
+        headers:
+          {
+            'Postman-Token': '9061024c-ba28-40ff-ad90-5d3beb789ffe',
+            'Cache-Control': 'no-cache',
+            'X-Auth-Token': 'OVQGQhc6YA23uH6uHe8qDwG5jkZ2M355',
+            Accept: 'application/json',
+            'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'
+          },
+        formData:
+          {
+            'files[0].file':
+              {
+                value: filedata,
+                options:
+                  {
+                    filename: filename,
+                    contentType: null
+                  }
+              },
+            "invitees[0].name": invitee_temp[0].name,
+            "invitees[0].email": invitee_temp[0].email,
+            "invitees[0].emailNotification": "false",
+            "invitees[1].name": invitee_temp[1].name,
+            "invitees[1].email": invitee_temp[1].email,
+            "invitees[1].emailNotification": "false",
+            "redirectUrl": "http://dev.lexstart.in:3000/api/v2/esigncomplete"
+
+          }
+      };
+      break;
+
+    case 3:
+      console.log("rahul3");
+      var options = {
+        method: 'POST',
+        url: 'https://app.leegality.com/api/v1.0/sr/create',
+        headers:
+          {
+            'Postman-Token': '9061024c-ba28-40ff-ad90-5d3beb789ffe',
+            'Cache-Control': 'no-cache',
+            'X-Auth-Token': 'OVQGQhc6YA23uH6uHe8qDwG5jkZ2M355',
+            Accept: 'application/json',
+            'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'
+          },
+        formData:
+          {
+            'files[0].file':
+              {
+                value: filedata,
+                options:
+                  {
+                    filename: filename,
+                    contentType: null
+                  }
+              },
+            "invitees[0].name": invitee_temp[0].name,
+            "invitees[0].email": invitee_temp[0].email,
+            "invitees[0].emailNotification": "false",
+            "invitees[1].name": invitee_temp[1].name,
+            "invitees[1].email": invitee_temp[1].email,
+            "invitees[1].emailNotification": "false",
+            "invitees[2].name": invitee_temp[2].name,
+            "invitees[2].email": invitee_temp[2].email,
+            "invitees[2].emailNotification": "false",
             "redirectUrl": "http://lexstart.in/esigncomplete/success.html"
 
-            } };
-           
-          break;
+          }
+      };
+      break;
 
-          case 9: 
-          console.log("rahul9");
-          var options = { method: 'POST',
-         url: 'https://app.leegality.com/api/v1.0/sr/create',
-         headers: 
-          {  'Postman-Token': '9061024c-ba28-40ff-ad90-5d3beb789ffe',
-          'Cache-Control': 'no-cache',
-          'X-Auth-Token': 'OVQGQhc6YA23uH6uHe8qDwG5jkZ2M355',
-          Accept: 'application/json',
-          'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' },
-         formData: 
-          { 'files[0].file': 
-             { value: filedata,
-               options: 
-                { filename: filename,
-                  contentType: null } },
-                  "invitees[0].name" : invitee_temp[0].name ,
-                  "invitees[0].email" : invitee_temp[0].email ,
-                  "invitees[0].emailNotification" : "false",
-                  "invitees[1].name" : invitee_temp[1].name ,
-                  "invitees[1].email" : invitee_temp[1].email ,
-                  "invitees[1].emailNotification" : "false",
-                  "invitees[2].name" : invitee_temp[2].name ,
-                  "invitees[2].email" : invitee_temp[2].email ,
-                  "invitees[2].emailNotification" : "false",
-                  "invitees[3].name" : invitee_temp[3].name ,
-                  "invitees[3].email" : invitee_temp[3].email ,
-                  "invitees[3].emailNotification" : "false",
-                  "invitees[4].name" : invitee_temp[4].name ,
-                  "invitees[4].email" : invitee_temp[4].email ,
-                  "invitees[4].emailNotification" : "false",
-                  "invitees[5].name" : invitee_temp[5].name ,
-                  "invitees[5].email" : invitee_temp[5].email ,
-                  "invitees[5].emailNotification" : "false",
-                  "invitees[6].name" : invitee_temp[6].name ,
-                  "invitees[6].email" : invitee_temp[6].email ,
-                  "invitees[6].emailNotification" : "false",
-                  "invitees[7].name" : invitee_temp[7].name ,
-                  "invitees[7].email" : invitee_temp[7].email ,
-                  "invitees[7].emailNotification" : "false",
-                  "invitees[8].name" : invitee_temp[8].name ,
-                  "invitees[8].email" : invitee_temp[8].email ,
-                  "invitees[8].emailNotification" : "fasle",
-             "redirectUrl": "http://lexstart.in/esigncomplete/success.html"
+    case 4:
+      console.log("rahul4");
+      var options = {
+        method: 'POST',
+        url: 'https://app.leegality.com/api/v1.0/sr/create',
+        headers:
+          {
+            'Postman-Token': '9061024c-ba28-40ff-ad90-5d3beb789ffe',
+            'Cache-Control': 'no-cache',
+            'X-Auth-Token': 'OVQGQhc6YA23uH6uHe8qDwG5jkZ2M355',
+            Accept: 'application/json',
+            'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'
+          },
+        formData:
+          {
+            'files[0].file':
+              {
+                value: filedata,
+                options:
+                  {
+                    filename: filename,
+                    contentType: null
+                  }
+              },
+            "invitees[0].name": invitee_temp[0].name,
+            "invitees[0].email": invitee_temp[0].email,
+            "invitees[0].emailNotification": "false",
+            "invitees[1].name": invitee_temp[1].name,
+            "invitees[1].email": invitee_temp[1].email,
+            "invitees[1].emailNotification": "false",
+            "invitees[2].name": invitee_temp[2].name,
+            "invitees[2].email": invitee_temp[2].email,
+            "invitees[2].emailNotification": "false",
+            "invitees[3].name": invitee_temp[3].name,
+            "invitees[3].email": invitee_temp[3].email,
+            "invitees[3].emailNotification": "false",
+            "redirectUrl": "http://lexstart.in/esigncomplete/success.html"
 
-             } };
-            
-           break;
-           case 10: 
-           console.log("rahul10");
-           var options = { method: 'POST',
-          url: 'https://app.leegality.com/api/v1.0/sr/create',
-          headers: 
-           {  'Postman-Token': '9061024c-ba28-40ff-ad90-5d3beb789ffe',
-           'Cache-Control': 'no-cache',
-           'X-Auth-Token': 'OVQGQhc6YA23uH6uHe8qDwG5jkZ2M355',
-           Accept: 'application/json',
-           'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' },
-          formData: 
-           { 'files[0].file': 
-              { value: filedata,
-                options: 
-                 { filename: filename,
-                   contentType: null } },
-                   "invitees[0].name" : invitee_temp[0].name ,
-                   "invitees[0].email" : invitee_temp[0].email ,
-                   "invitees[0].emailNotification" : "false",
-                   "invitees[1].name" : invitee_temp[1].name ,
-                   "invitees[1].email" : invitee_temp[1].email ,
-                   "invitees[1].emailNotification" : "false",
-                   "invitees[2].name" : invitee_temp[2].name ,
-                   "invitees[2].email" : invitee_temp[2].email ,
-                   "invitees[2].emailNotification" : "false",
-                   "invitees[3].name" : invitee_temp[3].name ,
-                   "invitees[3].email" : invitee_temp[3].email ,
-                   "invitees[3].emailNotification" : "false",
-                   "invitees[4].name" : invitee_temp[4].name ,
-                   "invitees[4].email" : invitee_temp[4].email ,
-                   "invitees[4].emailNotification" : "false",
-                   "invitees[5].name" : invitee_temp[5].name ,
-                   "invitees[5].email" : invitee_temp[5].email ,
-                   "invitees[5].emailNotification" : "false",
-                   "invitees[6].name" : invitee_temp[6].name ,
-                   "invitees[6].email" : invitee_temp[6].email ,
-                   "invitees[6].emailNotification" : "false",
-                   "invitees[7].name" : invitee_temp[7].name ,
-                   "invitees[7].email" : invitee_temp[7].email ,
-                   "invitees[7].emailNotification" : "false",
-                   "invitees[8].name" : invitee_temp[8].name ,
-                   "invitees[8].email" : invitee_temp[8].email ,
-                   "invitees[8].emailNotification" : "false",
-                   "invitees[9].name" : invitee_temp[9].name ,
-                   "invitees[9].email" : invitee_temp[9].email ,
-                   "invitees[9].emailNotification" : "false",
-              "redirectUrl": "http://lexstart.in/esigncomplete/success.html"
+          }
+      };
 
-              } };
-             
-            break;
+      break;
 
-       
+    case 5:
+      console.log("rahul5");
+      var options = {
+        method: 'POST',
+        url: 'https://app.leegality.com/api/v1.0/sr/create',
+        headers:
+          {
+            'Postman-Token': '9061024c-ba28-40ff-ad90-5d3beb789ffe',
+            'Cache-Control': 'no-cache',
+            'X-Auth-Token': 'OVQGQhc6YA23uH6uHe8qDwG5jkZ2M355',
+            Accept: 'application/json',
+            'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'
+          },
+        formData:
+          {
+            'files[0].file':
+              {
+                value: filedata,
+                options:
+                  {
+                    filename: filename,
+                    contentType: null
+                  }
+              },
+            "invitees[0].name": invitee_temp[0].name,
+            "invitees[0].email": invitee_temp[0].email,
+            "invitees[0].emailNotification": "false",
+            "invitees[1].name": invitee_temp[1].name,
+            "invitees[1].email": invitee_temp[1].email,
+            "invitees[1].emailNotification": "false",
+            "invitees[2].name": invitee_temp[2].name,
+            "invitees[2].email": invitee_temp[2].email,
+            "invitees[2].emailNotification": "false",
+            "invitees[3].name": invitee_temp[3].name,
+            "invitees[3].email": invitee_temp[3].email,
+            "invitees[3].emailNotification": "false",
+            "invitees[4].name": invitee_temp[4].name,
+            "invitees[4].email": invitee_temp[4].email,
+            "invitees[4].emailNotification": "false",
+            "redirectUrl": "http://lexstart.in/esigncomplete/success.html"
 
-     default :
+          }
+      };
 
-     console.log("PROBLEM IN INVITEES-LENGTH");
-}
-console.log(options);
-request(options, function (error, response, body) {
-  if (error) throw new Error(error);
+      break;
+
+    case 6:
+      console.log("rahul6");
+      var options = {
+        method: 'POST',
+        url: 'https://app.leegality.com/api/v1.0/sr/create',
+        headers:
+          {
+            'Postman-Token': '9061024c-ba28-40ff-ad90-5d3beb789ffe',
+            'Cache-Control': 'no-cache',
+            'X-Auth-Token': 'OVQGQhc6YA23uH6uHe8qDwG5jkZ2M355',
+            Accept: 'application/json',
+            'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'
+          },
+        formData:
+          {
+            'files[0].file':
+              {
+                value: filedata,
+                options:
+                  {
+                    filename: filename,
+                    contentType: null
+                  }
+              },
+            "invitees[0].name": invitee_temp[0].name,
+            "invitees[0].email": invitee_temp[0].email,
+            "invitees[0].emailNotification": "false",
+            "invitees[1].name": invitee_temp[1].name,
+            "invitees[1].email": invitee_temp[1].email,
+            "invitees[1].emailNotification": "false",
+            "invitees[2].name": invitee_temp[2].name,
+            "invitees[2].email": invitee_temp[2].email,
+            "invitees[2].emailNotification": "false",
+            "invitees[3].name": invitee_temp[3].name,
+            "invitees[3].email": invitee_temp[3].email,
+            "invitees[3].emailNotification": "false",
+            "invitees[4].name": invitee_temp[4].name,
+            "invitees[4].email": invitee_temp[4].email,
+            "invitees[4].emailNotification": "false",
+            "invitees[5].name": invitee_temp[5].name,
+            "invitees[5].email": invitee_temp[5].email,
+            "invitees[5].emailNotification": "false",
+            "redirectUrl": "http://lexstart.in/esigncomplete/success.html"
+
+          }
+      };
+
+      break;
+
+    case 7:
+      console.log("rahul6");
+      var options = {
+        method: 'POST',
+        url: 'https://app.leegality.com/api/v1.0/sr/create',
+        headers:
+          {
+            'Postman-Token': '9061024c-ba28-40ff-ad90-5d3beb789ffe',
+            'Cache-Control': 'no-cache',
+            'X-Auth-Token': 'OVQGQhc6YA23uH6uHe8qDwG5jkZ2M355',
+            Accept: 'application/json',
+            'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'
+          },
+        formData:
+          {
+            'files[0].file':
+              {
+                value: filedata,
+                options:
+                  {
+                    filename: filename,
+                    contentType: null
+                  }
+              },
+            "invitees[0].name": invitee_temp[0].name,
+            "invitees[0].email": invitee_temp[0].email,
+            "invitees[0].emailNotification": "false",
+            "invitees[1].name": invitee_temp[1].name,
+            "invitees[1].email": invitee_temp[1].email,
+            "invitees[1].emailNotification": "false",
+            "invitees[2].name": invitee_temp[2].name,
+            "invitees[2].email": invitee_temp[2].email,
+            "invitees[2].emailNotification": "false",
+            "invitees[3].name": invitee_temp[3].name,
+            "invitees[3].email": invitee_temp[3].email,
+            "invitees[3].emailNotification": "false",
+            "invitees[4].name": invitee_temp[4].name,
+            "invitees[4].email": invitee_temp[4].email,
+            "invitees[4].emailNotification": "false",
+            "invitees[5].name": invitee_temp[5].name,
+            "invitees[5].email": invitee_temp[5].email,
+            "invitees[5].emailNotification": "false",
+            "invitees[6].name": invitee_temp[6].name,
+            "invitees[6].email": invitee_temp[6].email,
+            "invitees[6].emailNotification": "false",
+            "redirectUrl": "http://lexstart.in/esigncomplete/success.html"
+
+          }
+      };
+
+      break;
+
+    case 8:
+      console.log("rahul8");
+      var options = {
+        method: 'POST',
+        url: 'https://app.leegality.com/api/v1.0/sr/create',
+        headers:
+          {
+            'Postman-Token': '9061024c-ba28-40ff-ad90-5d3beb789ffe',
+            'Cache-Control': 'no-cache',
+            'X-Auth-Token': 'OVQGQhc6YA23uH6uHe8qDwG5jkZ2M355',
+            Accept: 'application/json',
+            'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'
+          },
+        formData:
+          {
+            'files[0].file':
+              {
+                value: filedata,
+                options:
+                  {
+                    filename: filename,
+                    contentType: null
+                  }
+              },
+            "invitees[0].name": invitee_temp[0].name,
+            "invitees[0].email": invitee_temp[0].email,
+            "invitees[0].emailNotification": "false",
+            "invitees[1].name": invitee_temp[1].name,
+            "invitees[1].email": invitee_temp[1].email,
+            "invitees[1].emailNotification": "false",
+            "invitees[2].name": invitee_temp[2].name,
+            "invitees[2].email": invitee_temp[2].email,
+            "invitees[2].emailNotification": "false",
+            "invitees[3].name": invitee_temp[3].name,
+            "invitees[3].email": invitee_temp[3].email,
+            "invitees[3].emailNotification": "false",
+            "invitees[4].name": invitee_temp[4].name,
+            "invitees[4].email": invitee_temp[4].email,
+            "invitees[4].emailNotification": "false",
+            "invitees[5].name": invitee_temp[5].name,
+            "invitees[5].email": invitee_temp[5].email,
+            "invitees[5].emailNotification": "false",
+            "invitees[6].name": invitee_temp[6].name,
+            "invitees[6].email": invitee_temp[6].email,
+            "invitees[6].emailNotification": "false",
+            "invitees[7].name": invitee_temp[7].name,
+            "invitees[7].email": invitee_temp[7].email,
+            "invitees[7].emailNotification": "false",
+            "redirectUrl": "http://lexstart.in/esigncomplete/success.html"
+
+          }
+      };
+
+      break;
+
+    case 9:
+      console.log("rahul9");
+      var options = {
+        method: 'POST',
+        url: 'https://app.leegality.com/api/v1.0/sr/create',
+        headers:
+          {
+            'Postman-Token': '9061024c-ba28-40ff-ad90-5d3beb789ffe',
+            'Cache-Control': 'no-cache',
+            'X-Auth-Token': 'OVQGQhc6YA23uH6uHe8qDwG5jkZ2M355',
+            Accept: 'application/json',
+            'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'
+          },
+        formData:
+          {
+            'files[0].file':
+              {
+                value: filedata,
+                options:
+                  {
+                    filename: filename,
+                    contentType: null
+                  }
+              },
+            "invitees[0].name": invitee_temp[0].name,
+            "invitees[0].email": invitee_temp[0].email,
+            "invitees[0].emailNotification": "false",
+            "invitees[1].name": invitee_temp[1].name,
+            "invitees[1].email": invitee_temp[1].email,
+            "invitees[1].emailNotification": "false",
+            "invitees[2].name": invitee_temp[2].name,
+            "invitees[2].email": invitee_temp[2].email,
+            "invitees[2].emailNotification": "false",
+            "invitees[3].name": invitee_temp[3].name,
+            "invitees[3].email": invitee_temp[3].email,
+            "invitees[3].emailNotification": "false",
+            "invitees[4].name": invitee_temp[4].name,
+            "invitees[4].email": invitee_temp[4].email,
+            "invitees[4].emailNotification": "false",
+            "invitees[5].name": invitee_temp[5].name,
+            "invitees[5].email": invitee_temp[5].email,
+            "invitees[5].emailNotification": "false",
+            "invitees[6].name": invitee_temp[6].name,
+            "invitees[6].email": invitee_temp[6].email,
+            "invitees[6].emailNotification": "false",
+            "invitees[7].name": invitee_temp[7].name,
+            "invitees[7].email": invitee_temp[7].email,
+            "invitees[7].emailNotification": "false",
+            "invitees[8].name": invitee_temp[8].name,
+            "invitees[8].email": invitee_temp[8].email,
+            "invitees[8].emailNotification": "fasle",
+            "redirectUrl": "http://lexstart.in/esigncomplete/success.html"
+
+          }
+      };
+
+      break;
+    case 10:
+      console.log("rahul10");
+      var options = {
+        method: 'POST',
+        url: 'https://app.leegality.com/api/v1.0/sr/create',
+        headers:
+          {
+            'Postman-Token': '9061024c-ba28-40ff-ad90-5d3beb789ffe',
+            'Cache-Control': 'no-cache',
+            'X-Auth-Token': 'OVQGQhc6YA23uH6uHe8qDwG5jkZ2M355',
+            Accept: 'application/json',
+            'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'
+          },
+        formData:
+          {
+            'files[0].file':
+              {
+                value: filedata,
+                options:
+                  {
+                    filename: filename,
+                    contentType: null
+                  }
+              },
+            "invitees[0].name": invitee_temp[0].name,
+            "invitees[0].email": invitee_temp[0].email,
+            "invitees[0].emailNotification": "false",
+            "invitees[1].name": invitee_temp[1].name,
+            "invitees[1].email": invitee_temp[1].email,
+            "invitees[1].emailNotification": "false",
+            "invitees[2].name": invitee_temp[2].name,
+            "invitees[2].email": invitee_temp[2].email,
+            "invitees[2].emailNotification": "false",
+            "invitees[3].name": invitee_temp[3].name,
+            "invitees[3].email": invitee_temp[3].email,
+            "invitees[3].emailNotification": "false",
+            "invitees[4].name": invitee_temp[4].name,
+            "invitees[4].email": invitee_temp[4].email,
+            "invitees[4].emailNotification": "false",
+            "invitees[5].name": invitee_temp[5].name,
+            "invitees[5].email": invitee_temp[5].email,
+            "invitees[5].emailNotification": "false",
+            "invitees[6].name": invitee_temp[6].name,
+            "invitees[6].email": invitee_temp[6].email,
+            "invitees[6].emailNotification": "false",
+            "invitees[7].name": invitee_temp[7].name,
+            "invitees[7].email": invitee_temp[7].email,
+            "invitees[7].emailNotification": "false",
+            "invitees[8].name": invitee_temp[8].name,
+            "invitees[8].email": invitee_temp[8].email,
+            "invitees[8].emailNotification": "false",
+            "invitees[9].name": invitee_temp[9].name,
+            "invitees[9].email": invitee_temp[9].email,
+            "invitees[9].emailNotification": "false",
+            "redirectUrl": "http://lexstart.in/esigncomplete/success.html"
+
+          }
+      };
+
+      break;
+
+
+
+    default:
+
+      console.log("PROBLEM IN INVITEES-LENGTH");
+  }
+  console.log(options);
+  request(options, function (error, response, body) {
+    if (error) {
+      throw new Error(error);
+    } else {
+      var signRequest = body.data.requests;
       console.log(body);
-  return res.status(200).send(body);
-
-}); 
+      for(var i = 0 ; i < signRequest.length ; i++) {
+        var newEsignDoc = new EsignDoc({ "name":signRequest[i].name, "email" : signRequest[i].email ,
+                  "signurl": signRequest[i].signurl , "signed":signRequest[i].signed,"rejected":signRequest[i].rejected,"revoked":signRequest[i].revoked });
+        newEsignDoc.save(function (err) {
+          if (err) {
+            return res.status(400).send({
+              message: errorHandler.getErrorMessage(err)
+            });
+          } else {
+            //Write code to send emails to the invitees.
+          }
+        });
+      }
+     
+      return res.status(200).send(body);
+    }
+  });
 
 };
 
@@ -480,7 +590,7 @@ request(options, function (error, response, body) {
 //   var mail = req.user.email;
 //   var filesign = req.files.file;
 //   var unirequest = unirest("POST", "https://app.leegality.com/api/v1.0/sr/create");
-  
+
 //   unirequest.headers({
 //     "Postman-Token": "35162192-148d-4254-8991-1073c5a8b2c3",
 //     "Cache-Control": "no-cache",
@@ -488,7 +598,7 @@ request(options, function (error, response, body) {
 //     "Accept": "application/json",
 //     "content-type": "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW"
 //   });
-  
+
 //   unirequest.multipart([
 //     {
 //       "body": filesign
@@ -503,18 +613,18 @@ request(options, function (error, response, body) {
 //       "body": "true"
 //     }
 //   ]);
-  
+
 //   unirequest.end(function (res) {
 //     if (res.error) throw new Error(res.error);
-  
+
 //     console.log(res.body);
 //   });
-  
+
 
 // };
 
 
- // ---------OLD ----------//
+// ---------OLD ----------//
 //   exports.eSignDoc = function (req, res) {
 //     console.log("Hello lexie!");
 //     console.log("The File Name is : - " +req.files.file.name);
@@ -522,9 +632,9 @@ request(options, function (error, response, body) {
 //     console.log("The Mail id is : " + req.user.email);
 //     //console.log("The data in buffer  is : " + req.files.file.data);
 //     var pdf = req.files.file;
-    
+
 //     var unirest = require("unirest");
-  
+
 //     var unireq = unirest("POST", "https://app.leegality.com/api/v1.0/sr/create");
 //       unireq.headers({
 
@@ -558,13 +668,13 @@ request(options, function (error, response, body) {
 
 // -----------******************END *********************---------//
 
-    // console.log(req);
-    // console.log(req.user);
-    // var upload = multer(config.uploads.eDocUpload).single('testdoc');
-    // var docUploadFileFilter = require(path.resolve('./config/lib/multer')).docUploadFileFilter;
-    // upload.fileFilter = docUploadFileFilter;
+// console.log(req);
+// console.log(req.user);
+// var upload = multer(config.uploads.eDocUpload).single('testdoc');
+// var docUploadFileFilter = require(path.resolve('./config/lib/multer')).docUploadFileFilter;
+// upload.fileFilter = docUploadFileFilter;
 //     console.log("inside esign doc");
-  //   var request = require("request");
+//   var request = require("request");
 //   console.log("The requested body is :" + req);
 //   var fileData = req;
 //   console.log(fileData + "the file data");
@@ -606,18 +716,18 @@ exports.changeProfilePicture = function (req, res) {
   var upload = multer(config.uploads.profileUpload).single('newProfilePicture');
   console.log(upload);
   var profileUploadFileFilter = require(path.resolve('./config/lib/multer')).profileUploadFileFilter;
-  
+
   // Filtering to upload only images
   upload.fileFilter = profileUploadFileFilter;
 
   if (user) {
     upload(req, res, function (uploadError) {
-      if(uploadError) {
+      if (uploadError) {
         return res.status(400).send({
           message: 'Error occurred while uploading profile picture'
         });
       } else {
-          user.profileImageURL = config.uploads.profileUpload.dest + req.file.filename;
+        user.profileImageURL = config.uploads.profileUpload.dest + req.file.filename;
 
         user.save(function (saveError) {
           if (saveError) {
