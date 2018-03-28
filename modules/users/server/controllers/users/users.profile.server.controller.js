@@ -558,8 +558,9 @@ exports.eSignDoc = function (req, res) {
     if (error) {
       throw new Error(error);
     } else {
-      var signRequest = body.data.requests;
-      console.log(body);
+      console.log("console body is :"+body);
+      var signRequest = body.requests;
+      
       for(var i = 0 ; i < signRequest.length ; i++) {
         var newEsignDoc = new EsignDoc({ "name":signRequest[i].name, "email" : signRequest[i].email ,
                   "signurl": signRequest[i].signurl , "signed":signRequest[i].signed,"rejected":signRequest[i].rejected,"revoked":signRequest[i].revoked });
