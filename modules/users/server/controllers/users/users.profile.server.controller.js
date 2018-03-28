@@ -464,7 +464,7 @@ console.log(options);
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
       console.log(body);
-  return res.status(200).json({body});
+  return res.status(200).send(body);
 
 }); 
 
