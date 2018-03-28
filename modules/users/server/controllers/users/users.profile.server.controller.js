@@ -92,7 +92,8 @@ switch (invitee_temp.length) {
            contentType: null } },
            "invitees[0].name" : invitee_temp[0].name ,
            "invitees[0].email" : invitee_temp[0].email ,
-           "invitees[0].emailNotification" : "true",
+          "invitees[0].emailNotification": "false",
+          "redirectUrl": "http://dev.lexstart.in:3000/api/v2/esigncomplete"
      } };
      break;
 
@@ -117,7 +118,9 @@ switch (invitee_temp.length) {
            "invitees[0].emailNotification" : "true",
            "invitees[1].name" : invitee_temp[1].name ,
            "invitees[1].email" : invitee_temp[1].email ,
-           "invitees[1].emailNotification" : "true",
+           "invitees[1].emailNotification" : "false",
+      "redirectUrl": "http://dev.lexstart.in:3000/api/v2/esigncomplete"
+
      } };
      break;
 
@@ -145,7 +148,9 @@ switch (invitee_temp.length) {
            "invitees[1].emailNotification" : "true",
            "invitees[2].name" : invitee_temp[2].name ,
            "invitees[2].email" : invitee_temp[2].email ,
-           "invitees[2].emailNotification" : "true",
+           "invitees[2].emailNotification" : "false",
+      "redirectUrl": "http://dev.lexstart.in:3000/api/v2/esigncomplete"
+
      } };
      break;
 
@@ -176,7 +181,9 @@ switch (invitee_temp.length) {
              "invitees[2].emailNotification" : "true",
              "invitees[3].name" : invitee_temp[3].name ,
              "invitees[3].email" : invitee_temp[3].email ,
-             "invitees[3].emailNotification" : "true",
+             "invitees[3].emailNotification" : "false",
+        "redirectUrl": "http://dev.lexstart.in:3000/api/v2/esigncomplete"
+
        } };
        
       break;
@@ -211,7 +218,9 @@ switch (invitee_temp.length) {
               "invitees[3].emailNotification" : "true",
               "invitees[4].name" : invitee_temp[4].name ,
               "invitees[4].email" : invitee_temp[4].email ,
-              "invitees[4].emailNotification" : "true",
+              "invitees[4].emailNotification" : "false",
+         "redirectUrl": "http://dev.lexstart.in:3000/api/v2/esigncomplete"
+
          } };
         
        break;
@@ -249,7 +258,9 @@ switch (invitee_temp.length) {
                "invitees[4].emailNotification" : "true",
                "invitees[5].name" : invitee_temp[5].name ,
                "invitees[5].email" : invitee_temp[5].email ,
-               "invitees[5].emailNotification" : "true",
+               "invitees[5].emailNotification" : "false",
+          "redirectUrl": "http://dev.lexstart.in:3000/api/v2/esigncomplete"
+
           } };
          
         break;
@@ -290,7 +301,9 @@ switch (invitee_temp.length) {
                 "invitees[5].emailNotification" : "true",
                 "invitees[6].name" : invitee_temp[6].name ,
                 "invitees[6].email" : invitee_temp[6].email ,
-                "invitees[6].emailNotification" : "true",
+                "invitees[6].emailNotification" : "false",
+                "redirectUrl": "http://dev.lexstart.in:3000/api/v2/esigncomplete"
+
            } };
           
          break;
@@ -334,7 +347,9 @@ switch (invitee_temp.length) {
                  "invitees[6].emailNotification" : "true",
                  "invitees[7].name" : invitee_temp[7].name ,
                  "invitees[7].email" : invitee_temp[7].email ,
-                 "invitees[7].emailNotification" : "true",
+                 "invitees[7].emailNotification" : "false",
+                 "redirectUrl": "http://dev.lexstart.in:3000/api/v2/esigncomplete"
+
             } };
            
           break;
@@ -381,7 +396,9 @@ switch (invitee_temp.length) {
                   "invitees[7].emailNotification" : "true",
                   "invitees[8].name" : invitee_temp[8].name ,
                   "invitees[8].email" : invitee_temp[8].email ,
-                  "invitees[8].emailNotification" : "true",
+                  "invitees[8].emailNotification" : "fasle",
+                  "redirectUrl": "http://dev.lexstart.in:3000/api/v2/esigncomplete"
+
              } };
             
            break;
@@ -430,7 +447,9 @@ switch (invitee_temp.length) {
                    "invitees[8].emailNotification" : "true",
                    "invitees[9].name" : invitee_temp[9].name ,
                    "invitees[9].email" : invitee_temp[9].email ,
-                   "invitees[9].emailNotification" : "true",
+                   "invitees[9].emailNotification" : "false",
+                  "redirectUrl": "http://dev.lexstart.in:3000/api/v2/esigncomplete"
+
               } };
              
             break;
