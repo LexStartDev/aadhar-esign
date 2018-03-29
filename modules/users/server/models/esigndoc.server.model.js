@@ -13,8 +13,7 @@ var mongoose = require('mongoose'),
 var EsignDocSchema = new Schema({
 
   name: {
-    type: String,
-    default: ''
+    type: String
   },
   email: {
     type: String

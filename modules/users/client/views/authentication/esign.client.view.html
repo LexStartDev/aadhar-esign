@@ -1,0 +1,53 @@
+<style>
+header{
+  display: none;
+}
+.links-wrapper2{
+  display: none;
+}
+.td2 {
+    padding: 19px;
+}
+</style>
+<div ng-controller="AuthenticationController">
+  <h3 class="col-md-12 text-center"> E-Sign Process</h3>
+  <div class="col-xs-offset-2 col-xs-8 col-md-offset-4 col-md-4">
+    <form name="userForm" ng-submit="esign()" class="signin" novalidate>
+      <fieldset>
+      
+        <div class="form-group" show-errors>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" class="form-control" ng-model="esigndocmodel.email" placeholder="Email" lowercase required>
+        </div>
+        <div class="text-center form-group">
+          <button type="submit" class="btn btn-primary">Go !! </button>
+          </div>
+      </fieldset>
+    </form>
+    <div class="links-wrapper2">
+<table ng-repeat="item in url2">
+   <h5> Records Found ! </h5>
+
+  <tr>
+    <th>Name</th>
+    <th>E-mail</th>
+  </tr>
+  <tr>
+    <td class="td2">{{item.name}}</td>
+    <td>{{item.email}}</td>
+    <td><input type="button" style="border:1px solid grey;text-align:center;background-color:#E0EEEE" value="Proceed !" ng-click="esignproceed(item)" /></td>
+  </tr>
+</table>
+</div>
+    <!-- <div class="links-wrapper">
+        <h4>Please Find below the E-Sign Url to Proceed :</h4>
+        <ul>
+          <li  ng-repeat="item in url2">
+            <a ng-href="{{item.signUrl}}">{{item.signUrl}}</a>
+
+          </li>
+        </ul>
+    </div> -->
+
+  </div>
+</div>

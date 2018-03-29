@@ -11,6 +11,7 @@ module.exports = function (app) {
   app.route('/api/users/password').post(users.changePassword);
   app.route('/api/users/picture').post(users.changeProfilePicture);
   app.route('/api/esigndoc').post(users.eSignDoc);
+  app.route('/api/getEsignDocByEmail').get(users.getEsignDocList);
 
   
 

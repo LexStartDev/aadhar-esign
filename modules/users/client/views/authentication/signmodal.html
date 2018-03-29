@@ -1,0 +1,26 @@
+<style>
+    .docview-wrapperss iframe {
+        height: 90vh;
+    }
+header{
+  display: none;
+}
+    @media (min-width: 768px) {
+        .modal-dialog {
+            width: 95%;
+        }
+
+    }
+</style>
+<section class="docview-wrapperss" data-ng-controller="AuthenticationController">
+    <div class="modal-header" style="padding:10px;">
+        <h3 class="clearfix modal-title">LexStart Esign
+            <span class="glyphicon glyphicon-remove-circle pull-right" style="cursor: pointer; font-size: 24px;" data-dismiss="modal"
+                data-ng-click="modal_close()"></span>
+        </h3>
+    </div>
+
+
+    <iframe src="{{uniqurl_Notrust}}" width='100%' allowfullscreen webkitallowfullscreen></iframe>
+    <!-- <iframe src="../images/bmpg2.png" width='600' height='600' allowfullscreen webkitallowfullscreen></iframe> -->
+</section>

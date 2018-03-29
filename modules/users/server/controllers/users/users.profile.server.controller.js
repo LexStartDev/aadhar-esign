@@ -825,3 +825,18 @@ exports.changeProfilePicture = function (req, res) {
 exports.me = function (req, res) {
   res.json(req.user || null);
 };
+
+
+exports.getEsignDocList = function(req,res){
+
+    var emailToSearch = req.query.email;
+   EsignDoc.find({email:emailToSearch}).exec(function(err,response){
+      if(err){
+          res.status(400).json({status:"fail"});
+      } else {
+          res.json(response);
+      }
+   });
+
+
+}
