@@ -19,7 +19,7 @@ var EsignDocSchema = new Schema({
   email: {
     type: String
   },
-  signurl: {
+  signUrl: {
     type: String,
 
   },
