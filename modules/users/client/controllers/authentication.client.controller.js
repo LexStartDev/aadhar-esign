@@ -29,8 +29,8 @@ angular.module('users').controller('AuthenticationController', ['$rootScope', '$
       console.log("hello");
       console.log(x);
       console.log(x.signUrl);
-      $window.open(x.signUrl);
-   /*    
+   //   $window.open(x.signUrl);
+      
       $rootScope.uniqurl = x.signUrl;
       console.log($rootScope.uniqurl);
         $rootScope.uniqurl_Notrust = $sce.trustAsResourceUrl($rootScope.uniqurl);
@@ -42,7 +42,7 @@ angular.module('users').controller('AuthenticationController', ['$rootScope', '$
         keyboard: 'false'
 
       });
-      */
+      
 
 
       

@@ -2,42 +2,86 @@
 header{
   display: none;
 }
+.content{
+  width: 100%;
+}
+.content-wrapper{
+  max-width: 300px; margin: 20px auto; text-align: center;
+}
+.content-wrapper h3{
+  font-weight: 300; margin: 0px 0px 25px; text-decoration: underline;
+}
 .links-wrapper2{
   display: none;
 }
 .td2 {
     padding: 19px;
 }
+.btn-proceed{
+  font-size: 14px;
+}
+table td{
+  text-align: center; vertical-align: middle;
+}
+.signin input{
+  max-width: 300px;
+}
+.signin  ::-webkit-input-placeholder{
+  text-transform: none; font-size: 13px;
+}
+.signin  ::-ms-input-placeholder{
+  text-transform: none; font-size: 13px;
+}
+.signin  ::-o-input-placeholder{
+  text-transform: none; font-size: 13px;
+}
+.signin  ::-moz-input-placeholder{
+  text-transform: none; font-size: 13px;
+}
 </style>
 <div ng-controller="AuthenticationController">
-  <h3 class="col-md-12 text-center"> E-Sign Process</h3>
-  <div class="col-xs-offset-2 col-xs-8 col-md-offset-4 col-md-4">
-    <form name="userForm" ng-submit="esign()" class="signin" novalidate>
-      <fieldset>
-      
-        <div class="form-group" show-errors>
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" class="form-control" ng-model="esigndocmodel.email" placeholder="Email" lowercase required>
-        </div>
-        <div class="text-center form-group">
-          <button type="submit" class="btn btn-primary">Go !! </button>
+  <div class="content-wrapper">
+    <h3> E-Sign Process</h3>
+    <div>
+      <form name="userForm" ng-submit="esign()" class="signin" novalidate>
+        <fieldset>
+          <div class="form-group" show-errors>
+            <!-- <label for="email">Email</label>> -->
+            <input type="email" id="email" name="email" class="form-control" ng-model="esigndocmodel.email" placeholder="Enter a valid email address"
+              lowercase required>
           </div>
-      </fieldset>
-    </form>
-    <div class="links-wrapper2">
-<table ng-repeat="item in url2">
-   <h5> Records Found ! </h5>
-
-  <tr>
-    <th>Name</th>
-    <th>E-mail</th>
-  </tr>
-  <tr>
-    <td class="td2">{{item.name}}</td>
-    <td>{{item.email}}</td>
-    <td><input type="button" style="border:1px solid grey;text-align:center;background-color:#E0EEEE" value="Proceed !" ng-click="esignproceed(item)" /></td>
-  </tr>
-</table>
+          <div class="text-center form-group">
+            <button type="submit" class="btn btn-primary btn-info">Search </button>
+          </div>
+        </fieldset>
+      </form>
+      <div class="links-wrapper2">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <td colspan="3">
+              <h5> {{url2.length}} Records Found ! </h5>
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Name</th>
+            <th>E-mail</th>
+            <th>Sign-Status</th>
+            <th></th>
+          </tr>
+          <tr ng-repeat="item in url2">
+            <td class="td2">{{item.name}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.signed}}</td>
+            <td>
+              <input type="button" class="btn btn-default btn-sm btn-info btn-proceed" value="Proceed" ng-click="esignproceed(item)" />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
 </div>
     <!-- <div class="links-wrapper">
         <h4>Please Find below the E-Sign Url to Proceed :</h4>
