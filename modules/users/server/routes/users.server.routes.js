@@ -11,13 +11,13 @@ module.exports = function (app) {
   app.route('/api/users/password').post(users.changePassword);
   app.route('/api/users/picture').post(users.changeProfilePicture);
   app.route('/api/esigndoc').post(users.eSignDoc);
+  app.route('/api/esigndocupdate').post(users.updateEsignDocList);
   app.route('/api/getEsignDocByEmail').get(users.getEsignDocList);
 
-  
-
-  
-
+  app.route('/api/getEsignDocByEmail').get(users.eSignDocwebhook);
 
   // Finish by binding the user middleware
   app.param('userId', users.userByID);
 };
+
+
