@@ -84,7 +84,11 @@ module.exports.initMiddleware = function (app) {
 //cors  allow access origin .
 
   app.use(function (req, res, next) {
+
     res.header("Access-Control-Allow-Origin", "*");
+
+    res.setHeader('X-FRAME-OPTIONS','SAMEORIGIN');
+    res.header('X-FRAME-OPTIONS', 'SAMEORIGIN');
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, PUT, X-Auth-Token");
     res.header("Access-Control-Allow-Methods", "OPTIONS, PUT, POST, GET, DELETE");
 
@@ -94,9 +98,10 @@ module.exports.initMiddleware = function (app) {
   });
   // Request body parsing middleware should be above methodOverride
   app.use(bodyParser.urlencoded({
-    extended: true
+    parameterLimit: 500000, limit: '50mb', extended: true 
   }));
-  app.use(bodyParser.json());
+  app.use(bodyParser.json({ limit: '50mb' }));
+
   app.use(methodOverride());
 
   // Add the cookie parser and flash middleware
@@ -233,8 +238,12 @@ module.exports.configureSocketIO = function (app, db) {
 module.exports.init = function (db) {
   // Initialize express app
   var app = express();
-
+  // app.use(frameguard({
+  //   action: 'allow-from',
+  //   domain: 'https://app.leegality.com'
+  // }))
   // Initialize local variables
+
   this.initLocalVariables(app);
 
   // Initialize Express middleware
@@ -250,7 +259,7 @@ module.exports.init = function (db) {
   this.initModulesConfiguration(app);
 
   // Initialize Helmet security headers
-  this.initHelmetHeaders(app);
+  // this.initHelmetHeaders(app);
 
   // Initialize modules static client routes
   this.initModulesClientRoutes(app);
