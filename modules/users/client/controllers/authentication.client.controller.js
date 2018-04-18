@@ -29,19 +29,19 @@ angular.module('users').controller('AuthenticationController', ['$rootScope', '$
       console.log("hello");
       console.log(x);
       console.log(x.signUrl);
-   //   $window.open(x.signUrl);
+     $window.open(x.signUrl);
       
-      $rootScope.uniqurl = x.signUrl;
-      console.log($rootScope.uniqurl);
-        $rootScope.uniqurl_Notrust = $sce.trustAsResourceUrl($rootScope.uniqurl);
+      // $rootScope.uniqurl = x.signUrl;
+      // console.log($rootScope.uniqurl);
+      //   $rootScope.uniqurl_Notrust = $sce.trustAsResourceUrl($rootScope.uniqurl);
 
-      $rootScope.modalInstance = $modal.open({
-        templateUrl: 'modules/users/client/views/authentication/signmodal.html',
-        size: 'md',
-        backdrop: 'static',
-        keyboard: 'false'
+      // $rootScope.modalInstance = $modal.open({
+      //   templateUrl: 'modules/users/client/views/authentication/signmodal.html',
+      //   size: 'md',
+      //   backdrop: 'static',
+      //   keyboard: 'false'
 
-      });
+      // });
       
 
 
