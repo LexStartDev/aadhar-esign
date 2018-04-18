@@ -14,7 +14,7 @@ var _ = require('lodash'),
   User = mongoose.model('User'),
   EsignDoc = mongoose.model('EsignDoc');
 var path = require('path');
-
+ 
 var errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
 /**
