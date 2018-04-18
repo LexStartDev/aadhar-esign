@@ -59,9 +59,9 @@ exports.update = function (req, res) {
  * Update profile picture   
  */
 exports.eSignDoc = function (req, res) {
+  var request = require("request");
   var invitee_temp = JSON.parse(req.body.invitee);
   var filedata = req.files.file.data;
-  var request = require("request");
   var filename = req.files.file.name;
 console.log(invitee_temp);
 console.log(req.body.msg);
@@ -94,17 +94,17 @@ console.log(req.body.msg);
       }
   }
     console.log(JSON.stringify(options));
-  //  request(options, function (error, response, body) {
-  //   if(error){
-  //     console.log("error");
-  //     throw new Error(error);
-  //   }
-  //   else{
-  //     console.log("Done!");
-  //     console.log("body : "+JSON.stringify(body));
-  //   }
-  // });
-  // return;
+   request(options, function (error, response, body) {
+    if(error){
+      console.log("error");
+      throw new Error(error);
+    }
+    else{
+      console.log("Done!");
+      console.log("body : "+JSON.stringify(body));
+    }
+  });
+  return;
 
 
 
@@ -895,8 +895,33 @@ exports.eSignDocwebhook = function (req, res) {
 
  )
 
+  // var request = require("request");
 
 
+  // var options = {
+  //   method: 'POST',
+  //   url: 'https://api.mailgun.net/v3/mg.lexstart.in/messages',
+  //   headers:
+  //     {
+  //       'Postman-Token': '34c9dfec-32dd-401f-89a1-902f194ea7af',
+  //       'Cache-Control': 'no-cache',
+  //       Authorization: 'Basic YXBpOmtleS1mMWY3NzQ4NjJjODFjYjhhYTNiNzE3ODdhZWVmNjEyNA==',
+  //       'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'
+  //     },
+  //   formData:
+  //     {
+  //       from: 'support@lexstart.in',
+  //       to: 'rahul@lexstart.in',
+  //       'subject ': 'hello testing mailgun',
+  //       text: 'hello'
+  //     }
+  // };
+
+  // request(options, function (error, response, body) {
+  //   if (error) throw new Error(error);
+
+  //   console.log(body);
+  // });
 
 
 
