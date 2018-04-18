@@ -94,16 +94,17 @@ console.log(req.body.msg);
       }
   }
     console.log(JSON.stringify(options));
-   request(options, function (error, response, body) {
-    if(error){
-      console.log("error");
-      throw new Error(error);
-    }
-    else{
-      console.log("Done!");
-      console.log("body : "+JSON.stringify(body));
-    }
-  });
+  //  request(options, function (error, response, body) {
+  //   if(error){
+  //     console.log("error");
+  //     throw new Error(error);
+  //   }
+  //   else{
+  //     console.log("Done!");
+  //     console.log("body : "+JSON.stringify(body));
+  //   }
+  // });
+  // return;
 
 
 
@@ -139,7 +140,7 @@ console.log(req.body.msg);
             "invitees[0].email": invitee_temp[0].email,
             "invitees[0].emailNotification": "false",
             "webhookUrl": "http://34.217.67.22:8443/api/webhook",
-            "deleteOnComplete":true,
+            "deleteOnComplete":"true",
             "redirectUrl": "http://lexstart.in/esigncomplete/success.html"
             
             
@@ -178,7 +179,7 @@ console.log(req.body.msg);
             "invitees[1].email": invitee_temp[1].email,
             "invitees[1].emailNotification": "false",
             "webhookUrl": "http://34.217.67.22:8443/api/webhook",
-            "deleteOnComplete": true,
+            "deleteOnComplete":"true",
             "redirectUrl": "http://lexstart.in/esigncomplete/success.html"
           }
       };
