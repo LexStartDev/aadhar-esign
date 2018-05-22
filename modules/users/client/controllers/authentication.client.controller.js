@@ -26,7 +26,7 @@ angular.module('users').controller('AuthenticationController', ['$rootScope', '$
       $rootScope.modalInstance.close();
     }
     $scope.esignproceed = function (x) {
-      console.log("hello");
+      console.log("hello"); 
       console.log(x);
       console.log(x.signUrl);
     //  $window.open(x.signUrl);
