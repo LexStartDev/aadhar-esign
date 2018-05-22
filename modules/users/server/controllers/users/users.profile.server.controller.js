@@ -497,7 +497,7 @@ console.log(req.body.msg);
                     filename: filename,
                     contentType: null
                   }
-              }, 
+              },   
             "invitees[0].name": invitee_temp[0].name,
             "invitees[0].email": invitee_temp[0].email,
             "invitees[0].emailNotification": "false",
