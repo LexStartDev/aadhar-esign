@@ -29,7 +29,28 @@ angular.module('users').controller('AuthenticationController', ['$rootScope', '$
       console.log("hello");
       console.log(x);
       console.log(x.signUrl);
-     $window.open(x.signUrl);
+    //  $window.open(x.signUrl);
+
+      function callback(response) {
+        if (response.error) {
+          document.getElementById('message').style.color = "red";
+          document.getElementById('message').innerHTML = response.error;
+        } else {
+
+          document.getElementById('message').style.color = "green";
+          document.getElementById('message').innerHTML = response.message;
+        }
+      }
+
+      var obj = {
+        logoUrl: "https://ia800100.us.archive.org/31/items/prakash_lexstart_Logo_20171130/logo.png",
+        callback: callback
+      };
+      var leegality = new Leegality(obj);
+      leegality.init();
+      //You will get a signing url by uploading document from backend.
+      var signingUrl = x.signUrl
+      leegality.esign(signingUrl);
         
       // $rootScope.uniqurl = x.signUrl;
       // console.log($rootScope.uniqurl);
