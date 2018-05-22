@@ -1,68 +1,84 @@
 <style>
-header{
-  display: none;
-}
-.content{
-  width: 100%;
-}
-.content-wrapper{
-  max-width: 300px; margin: 20px auto; text-align: center;
-}
-.content-wrapper h3{
-  font-weight: 300; margin: 0px 0px 25px; text-decoration: underline;
-}
-.links-wrapper2{
-  display: none;
-}
-.td2 {
+  header {
+    display: none;
+  }
+
+  .content {
+    width: 100%;
+  }
+
+  .content-wrapper {
+    max-width: 300px;
+    margin: 20px auto;
+    text-align: center;
+  }
+
+  .content-wrapper h3 {
+    font-weight: 300;
+    margin: 0px 0px 25px;
+    text-decoration: underline;
+  }
+
+  .links-wrapper2 {
+    display: none;
+  }
+
+  .td2 {
     padding: 19px;
-}
-.btn-proceed{
-  font-size: 14px;
-}
-table td{
-  text-align: center; vertical-align: middle;
-}
-.signin input{
-  max-width: 300px;
-}
-.signin  ::-webkit-input-placeholder{
-  text-transform: none; font-size: 13px;
-}
-.signin  ::-ms-input-placeholder{
-  text-transform: none; font-size: 13px;
-}
-.signin  ::-o-input-placeholder{
-  text-transform: none; font-size: 13px;
-}
-.signin  ::-moz-input-placeholder{
-  text-transform: none; font-size: 13px;
-}
+  }
+
+  .btn-proceed {
+    font-size: 14px;
+  }
+
+  table td {
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .signin input {
+    max-width: 300px;
+  }
+
+  .signin ::-webkit-input-placeholder {
+    text-transform: none;
+    font-size: 13px;
+  }
+
+  .signin ::-ms-input-placeholder {
+    text-transform: none;
+    font-size: 13px;
+  }
+
+  .signin ::-o-input-placeholder {
+    text-transform: none;
+    font-size: 13px;
+  }
+
+  .signin ::-moz-input-placeholder {
+    text-transform: none;
+    font-size: 13px;
+  }
 </style>
-<script type='text/javascript'>
-  $(document).ready(function () {
-    $('#divId').load('https://app.leegality.com/sign/01fccd38-8398-447d-91b9-140392ac8bd9?source=api');
-  });
-</script>
-.
-<script src="le2.js" type="text/javascript"></script>
+
+
 
 
 <div ng-controller="AuthenticationController">
   <div class="content-wrapper">
-      <form name="userForm" ng-submit="esign()" class="signin" novalidate>
-        <fieldset>
-          <div class="form-group" show-errors>
-            <!-- <label for="email">Email</label>> -->
-            <input type="email" id="email" name="email" class="form-control" ng-model="esigndocmodel.email" placeholder="Enter a valid email address"
-              lowercase required>
-          </div>
-          <div class="text-center form-group">
-            <button type="submit" class="btn btn-primary btn-info">Search </button>
-          </div>
-        </fieldset> 
-      </form>
-      <div class="links-wrapper2">
+    <form name="userForm" ng-submit="esign()" class="signin" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <!-- <label for="email">Email</label>> -->
+          <input type="email" id="email" name="email" class="form-control" ng-model="esigndocmodel.email" placeholder="Enter a valid email address"
+            lowercase required>
+        </div>
+        <div class="text-center form-group">
+          <button type="submit" class="btn btn-primary btn-info">Search </button>
+        </div>
+      </fieldset>
+    </form>
+    <div class="links-wrapper2">
       <table class="table table-striped">
         <thead>
           <tr>
@@ -73,39 +89,25 @@ table td{
         </thead>
         <tbody>
           <tr>
-            <!-- <object data="https://app.leegality.com/sign/960954c5-f533-41c0-b56e-870b4c51a46c" width="600" height="400">
-              <embed src="https://app.leegality.com/sign/960954c5-f533-41c0-b56e-870b4c51a46c" width="600" height="400"> </embed>
-              Error: Embedded data could not be displayed.
-            </object> -->
+
             <th>Name</th>
             <th>E-mail</th>
             <th>Sign-Status</th>
             <th></th>
           </tr>
-          <tr ng-repeat="item in url2">
-            <td class="td2">{{item.name}}</td>
-            <td>{{item.email}}</td>
-            <td>{{item.signed}}</td> 
+          <tr ng-repeat="items in url2">
+            <td class="td2">{{items.name}}</td>
+            <td>{{items.email}}</td>
+            <td>{{items.signed}}</td>
             <td>
-              <input type="button" class="btn btn-default btn-sm btn-info btn-proceed" value="Proceed" ng-click="esignproceed(item)" />
+              <input type="button" class="btn btn-default btn-sm btn-info btn-proceed" value="Proceed" ng-click="esignproceed(items)" />
             </td>
           </tr>
         </tbody>
       </table>
-   
-  </div>
-</div>
-    <!-- <div class="links-wrapper">
-        <h4>Please Find below the E-Sign Url to Proceed :</h4>
-        <ul>
-          <li  ng-repeat="item in url2">
-            <a ng-href="{{item.signUrl}}">{{item.signUrl}}</a>
 
-          </li>
-        </ul>
-    </div> -->
-
+    </div>
   </div>
 
-</div>
 
+</div>
