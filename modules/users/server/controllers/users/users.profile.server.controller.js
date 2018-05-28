@@ -231,10 +231,10 @@ console.log(temp_file_name);
                         {
                           'files[0].file':
                             {
-                              value: filedata,
+                              value: fs.createReadStream('public/pdf/' + pdf_path),
                               options:
                                 {
-                                  filename: filename,
+                                  filename: pdf_path,
                                   contentType: null
                                 }
                             },
@@ -268,10 +268,10 @@ console.log(temp_file_name);
                         {
                           'files[0].file':
                             {
-                              value: filedata,
+                              value: fs.createReadStream('public/pdf/' + pdf_path),
                               options:
                                 {
-                                  filename: filename,
+                                  filename: pdf_path,
                                   contentType: null
                                 }
                             },
@@ -308,10 +308,10 @@ console.log(temp_file_name);
                         {
                           'files[0].file':
                             {
-                              value: filedata,
+                              value: fs.createReadStream('public/pdf/' + pdf_path),
                               options:
                                 {
-                                  filename: filename,
+                                  filename: pdf_path,
                                   contentType: null
                                 }
                             },
@@ -352,10 +352,10 @@ console.log(temp_file_name);
                         {
                           'files[0].file':
                             {
-                              value: filedata,
+                              value: fs.createReadStream('public/pdf/' + pdf_path),
                               options:
                                 {
-                                  filename: filename,
+                                  filename: pdf_path,
                                   contentType: null
                                 }
                             },
@@ -399,10 +399,10 @@ console.log(temp_file_name);
                         {
                           'files[0].file':
                             {
-                              value: filedata,
+                              value: fs.createReadStream('public/pdf/' + pdf_path),
                               options:
                                 {
-                                  filename: filename,
+                                  filename: pdf_path,
                                   contentType: null
                                 }
                             },
@@ -449,10 +449,10 @@ console.log(temp_file_name);
                         {
                           'files[0].file':
                             {
-                              value: filedata,
+                              value: fs.createReadStream('public/pdf/' + pdf_path),
                               options:
                                 {
-                                  filename: filename,
+                                  filename: pdf_path,
                                   contentType: null
                                 }
                             },
@@ -502,10 +502,10 @@ console.log(temp_file_name);
                         {
                           'files[0].file':
                             {
-                              value: filedata,
+                              value: fs.createReadStream('public/pdf/' + pdf_path),
                               options:
                                 {
-                                  filename: filename,
+                                  filename: pdf_path,
                                   contentType: null
                                 }
                             },
@@ -558,10 +558,10 @@ console.log(temp_file_name);
                         {
                           'files[0].file':
                             {
-                              value: filedata,
+                              value: fs.createReadStream('public/pdf/' + pdf_path),
                               options:
                                 {
-                                  filename: filename,
+                                  filename: pdf_path,
                                   contentType: null
                                 }
                             },
@@ -616,10 +616,10 @@ console.log(temp_file_name);
                         {
                           'files[0].file':
                             {
-                              value: filedata,
+                              value: fs.createReadStream('public/pdf/' + pdf_path),
                               options:
                                 {
-                                  filename: filename,
+                                  filename: pdf_path,
                                   contentType: null
                                 }
                             },
