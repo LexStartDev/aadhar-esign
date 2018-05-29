@@ -33,11 +33,11 @@ angular.module('users').controller('AuthenticationController', ['$rootScope', '$
       
       function callback(response) {
         if (response.error) {
-         alert(JSON.stringify(response));
-        } else {
-          alert(JSON.stringify(response));
+          alert("The e-sign process has been cancelled");
 
-         console.log("done");
+        } else {
+          alert("The document has been signed and mailed to you !");
+         
         }
       }
       var obj = {
