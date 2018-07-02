@@ -37,7 +37,7 @@ var EsignDocSchema = new Schema({
 
 var EsignCreditSchema = new Schema({
   accountId:{
-    type:Number
+    type:String
   },
   org_id: {
     type: Number
