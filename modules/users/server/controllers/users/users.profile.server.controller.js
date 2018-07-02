@@ -22,6 +22,34 @@ var errorHandler = require(path.resolve('./modules/core/server/controllers/error
 /**
  * Update user details
  */
+
+exports.eSignRecordsListUsed = function(req, res) {
+  EsignCreditUsage.find({ 'org_id': req.body.org_id }).exec(function (err, EsignCreditUsage) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.status(200).send(EsignCreditUsage);
+    }
+  });
+};
+
+exports.eSignRecordsListPaid = function (req, res) {
+
+  EsignCredit.find({ 'org_id': req.body.org_id }).exec(function (err, EsignCredit) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.status(200).send(EsignCredit);
+    }
+  });
+};
+
+
+
 exports.update = function (req, res) {
   // Init Variables
   var user = req.user;
@@ -1301,6 +1329,7 @@ exports.eSigncredits = function (req, res) {
     } else {
       console.log(EsignCredit);
       res.status(200).send({ 'status': EsignCredit });
+
     }
   });
 };
