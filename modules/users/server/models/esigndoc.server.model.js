@@ -60,7 +60,7 @@ var EsignCreditSchema = new Schema({
 
 var EsignCreditUsageSchema = new Schema({
   accountId: {
-    type: Number
+    type: String
   },
   org_id: {
     type: Number
