@@ -10,10 +10,11 @@ var _ = require('lodash'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   mongoose = require('mongoose'),
   multer = require('multer'),
-  config = require(path.resolve('./config/config')),
-  User = mongoose.model('User'),
-  EsignDoc = mongoose.model('EsignDoc');
-var path = require('path');
+ config = require(path.resolve('./config/config')),
+User = mongoose.model('User'),
+EsignDoc = mongoose.model('EsignDoc'),
+EsignCredit = mongoose.model('EsignCredit');
+ var path = require('path');
  
 var errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
@@ -58,6 +59,10 @@ exports.update = function (req, res) {
 /**
  * Update profile picture   
  */
+
+
+
+
 exports.eSignDoc = function (req, res,next) {
   var request = require("request");
   var invitee_temp = JSON.parse(req.body.invitee);
@@ -1283,7 +1288,20 @@ console.log(temp_file_name);
   // });   
 }
 };
-
+exports.eSigncredits = function (req, res) {
+  console.log("inside lawyer hours records"+JSON.stringify(req.body));
+  EsignCredit = new EsignCredit(req.body);
+  EsignCredit.save(function (err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      console.log(EsignCredit);
+      res.status(200).send({ 'status': EsignCredit });
+    }
+  });
+};
 
 
 
