@@ -10,6 +10,7 @@ var mongoose = require('mongoose'),
 /**
  * User Schema
  */
+
 var EsignDocSchema = new Schema({
 
   name: {
@@ -34,6 +35,30 @@ var EsignDocSchema = new Schema({
 
 });
 
+var EsignCreditSchema = new Schema({
+  accountId:{
+    type:Number
+  },
+  org_id: {
+    type: Number
+  },
+
+  creditsPurchased: {
+    type: Number
+  },
+
+  amountPaid: {
+    type: Number
+  },
+
+  purchasedOn: {
+    type: Date,
+    default: Date.now
+  }
+
+});
 
 
 mongoose.model('EsignDoc', EsignDocSchema);
+mongoose.model('EsignCredit', EsignCreditSchema);
+
