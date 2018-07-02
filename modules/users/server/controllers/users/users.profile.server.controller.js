@@ -13,8 +13,9 @@ var _ = require('lodash'),
  config = require(path.resolve('./config/config')),
 User = mongoose.model('User'),
 EsignDoc = mongoose.model('EsignDoc'),
-EsignCredit = mongoose.model('EsignCredit');
- var path = require('path');
+EsignCredit = mongoose.model('EsignCredit'),
+EsignCreditUsage = mongoose.model('EsignCreditUsage');
+  var path = require('path');
  
 var errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
@@ -1288,6 +1289,7 @@ console.log(temp_file_name);
   // });   
 }
 };
+
 exports.eSigncredits = function (req, res) {
   console.log("inside lawyer hours records"+JSON.stringify(req.body));
   EsignCredit = new EsignCredit(req.body);
@@ -1299,6 +1301,20 @@ exports.eSigncredits = function (req, res) {
     } else {
       console.log(EsignCredit);
       res.status(200).send({ 'status': EsignCredit });
+    }
+  });
+};
+exports.eSigncreditsUsage = function (req, res) {
+  console.log("inside lawyer hours records" + JSON.stringify(req.body));
+  EsignCreditUsage = new EsignCreditUsage(req.body);
+  EsignCreditUsage.save(function (err) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      console.log(EsignCreditUsage);
+      res.status(200).send({ 'status': EsignCreditUsage });
     }
   });
 };

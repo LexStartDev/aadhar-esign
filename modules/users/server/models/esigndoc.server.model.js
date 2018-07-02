@@ -58,7 +58,25 @@ var EsignCreditSchema = new Schema({
 
 });
 
+var EsignCreditUsageSchema = new Schema({
+  accountId: {
+    type: Number
+  },
+  org_id: {
+    type: Number
+  },
+  creditsUsed: {
+    type: Number
+  },
+  usedOn: {
+    type: Date,
+    default: Date.now
+  }
+});
+
+
 
 mongoose.model('EsignDoc', EsignDocSchema);
 mongoose.model('EsignCredit', EsignCreditSchema);
+mongoose.model('EsignCreditUsage', EsignCreditUsageSchema);
 
