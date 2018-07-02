@@ -14,6 +14,8 @@ module.exports = function (app) {
   app.route('/api/esigndocupdate').post(users.updateEsignDocList);
   app.route('/api/getEsignDocByEmail').get(users.getEsignDocList);
   app.route('/api/webhook').post(users.eSignDocwebhook);
+  app.route('/api/eSigncredits').post(users.eSigncredits);
+
 
   // Finish by binding the user middleware
   app.param('userId', users.userByID);
