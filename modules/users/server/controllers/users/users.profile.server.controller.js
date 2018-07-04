@@ -1324,7 +1324,7 @@ console.log(temp_file_name);
 };
 
 exports.eSigncredits = function (req, res) {
-  console.log("inside lawyer hours records"+JSON.stringify(req.body));
+  console.log("inside esign credits"+JSON.stringify(req.body));
   EsignCredit = new EsignCredit(req.body);
   EsignCredit.save(function (err) {
     if (err) {
@@ -1332,14 +1332,14 @@ exports.eSigncredits = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      console.log(EsignCredit);
+      console.log(JSON.stringify(EsignCredit)+"success");
       res.jsonp(EsignCredit);
 
     }
   });
 };
 exports.eSigncreditsUsage = function (req, res) {
-  console.log("inside lawyer hours records" + JSON.stringify(req.body));
+  console.log("inside esign credit usage" + JSON.stringify(req.body));
   EsignCreditUsage = new EsignCreditUsage(req.body);
   EsignCreditUsage.save(function (err) {
     if (err) {
@@ -1347,7 +1347,7 @@ exports.eSigncreditsUsage = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      console.log(EsignCreditUsage);
+      console.log(JSON.stringify(EsignCreditUsage)+"result usage");
       res.jsonp(EsignCreditUsage);
     }
   });
