@@ -36,8 +36,7 @@ exports.eSignRecordsListUsed = function(req, res) {
 };
 
 exports.eSignRecordsListPaid = function (req, res) {
-console.log("inside esign Record list");
-
+console.log("inside esign Record list"+JSON.stringify(req.body));
   EsignCredit.find({ 'org_id': req.body.org_id }).exec(function (err, EsignCredit) {
     if (err) {
       return res.status(400).send({
