@@ -36,16 +36,24 @@ exports.eSignRecordsListUsed = function(req, res) {
 };
 
 exports.eSignRecordsListPaid = function (req, res) {
+console.log("inside esign Record list");
 
   EsignCredit.find({ 'org_id': req.body.org_id }).exec(function (err, EsignCredit) {
     if (err) {
       return res.status(400).send({
+
         message: errorHandler.getErrorMessage(err)
+
       });
     } else {
+
       res.status(200).send(EsignCredit);
+
     }
   });
+
+
+
 };
 
 
@@ -88,9 +96,6 @@ exports.update = function (req, res) {
 /**
  * Update profile picture   
  */
-
-
-
 
 exports.eSignDoc = function (req, res,next) {
   var request = require("request");
@@ -1328,7 +1333,7 @@ exports.eSigncredits = function (req, res) {
       });
     } else {
       console.log(EsignCredit);
-      res.status(200).send({ 'status': EsignCredit });
+      res.jsonp(EsignCredit);
 
     }
   });
@@ -1343,12 +1348,10 @@ exports.eSigncreditsUsage = function (req, res) {
       });
     } else {
       console.log(EsignCreditUsage);
-      res.status(200).send({ 'status': EsignCreditUsage });
+      res.jsonp(EsignCreditUsage);
     }
   });
 };
-
-
 
 exports.changeProfilePicture = function (req, res) {
 
@@ -1429,10 +1432,9 @@ exports.getEsignDocList = function(req,res){
       }
    });
 
-}
+};
 
 exports.eSignDocwebhook = function (req, res) {
-
  console.log(req);
  console.log(req.body);
  console.log(req.body.requests[0].signUrl);
