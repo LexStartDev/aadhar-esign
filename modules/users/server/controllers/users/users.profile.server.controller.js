@@ -1324,7 +1324,7 @@ console.log(temp_file_name);
 
 exports.eSigncredits = function (req, res) {
   console.log("inside esign credits"+JSON.stringify(req.body));
-  EsignCredit = new EsignCredit(req.body);
+ var EsignCredit = new EsignCredit(req.body);
   EsignCredit.save(function (err) {
     if (err) {
       return res.status(400).send({
@@ -1339,7 +1339,7 @@ exports.eSigncredits = function (req, res) {
 };
 exports.eSigncreditsUsage = function (req, res) {
   console.log("inside esign credit usage" + JSON.stringify(req.body));
-  EsignCreditUsage = new EsignCreditUsage(req.body);
+var  EsignCreditUsage = new EsignCreditUsage(req.body);
   EsignCreditUsage.save(function (err) {
     if (err) {
       return res.status(400).send({
