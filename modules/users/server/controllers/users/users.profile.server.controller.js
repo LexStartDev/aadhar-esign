@@ -46,8 +46,8 @@ console.log("inside esign Record list");
 
       });
     } else {
-
-      res.status(200).send(EsignCredit);
+      console.log("saved " + JSON.stringify(EsignCredit));
+      res.jsonp(EsignCredit);
 
     }
   });
