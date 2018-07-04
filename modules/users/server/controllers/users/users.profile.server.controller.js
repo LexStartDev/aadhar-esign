@@ -1324,15 +1324,15 @@ console.log(temp_file_name);
 
 exports.eSigncredits = function (req, res) {
   console.log("inside esign credits"+JSON.stringify(req.body));
- var esignCredit = new EsignCredit(req.body);
-  esignCredit.save(function (err) {
+ var EsignCredit = new EsignCredit(req.body);
+  EsignCredit.save(function (err, EsignCredit) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      console.log("success"+JSON.stringify(esignCredit));
-      res.jsonp(esignCredit);
+      console.log(JSON.stringify(EsignCredit)+"success");
+      res.jsonp(EsignCredit);
 
     }
   });
