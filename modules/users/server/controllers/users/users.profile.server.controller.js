@@ -1324,30 +1324,30 @@ console.log(temp_file_name);
 
 exports.eSigncredits = function (req, res) {
   console.log("inside esign credits"+JSON.stringify(req.body));
- var EsignCredit = new EsignCredit(req.body);
-  EsignCredit.save(function (err, EsignCredit) {
+ var esignCredit = new EsignCredit(req.body);
+  esignCredit.save(function (err, esignCredit) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      console.log(JSON.stringify(EsignCredit)+"success");
-      res.jsonp(EsignCredit);
+      console.log(JSON.stringify(esignCredit)+"success");
+      res.jsonp(esignCredit);
 
     }
   });
 };
 exports.eSigncreditsUsage = function (req, res) {
   console.log("inside esign credit usage" + JSON.stringify(req.body));
-var  EsignCreditUsage = new EsignCreditUsage(req.body);
-  EsignCreditUsage.save(function (err) {
+var  esignCreditUsage = new EsignCreditUsage(req.body);
+  esignCreditUsage.save(function (err, esignCreditUsage) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      console.log(JSON.stringify(EsignCreditUsage)+"result usage");
-      res.jsonp(EsignCreditUsage);
+      console.log(JSON.stringify(esignCreditUsage)+"result usage");
+      res.jsonp(esignCreditUsage);
     }
   });
 };
