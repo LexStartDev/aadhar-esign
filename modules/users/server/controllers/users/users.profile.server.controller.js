@@ -98,22 +98,31 @@ exports.update = function (req, res) {
 
 exports.eSignDoc = function (req, res,next) {
   var request = require("request");
-  var invitee_temp = JSON.parse(req.body.invitee);
-  var filedata = req.files.file.data;
-  var filename = req.files.file.name;
+    console.log(JSON.stringify(req.body));
+
+    // console.log(req);
+  var invitee_temp1 = JSON.parse(req.body.invitees);
+  var filedata = req.files.File.data;
+  var filename = req.files.File.name;
+  var invitee_temp = invitee_temp1.invitees;
+console.log(filename);
+
 console.log(invitee_temp);
-console.log(req.body.msg);
+
 console.log("inside mail");
-console.log(req.files.file.name);
-console.log(req.files.file);
-if (req.files.file.name) {
-var temp_file_name = req.files.file.name.split(".");
+
+
+// console.log(req.files.File.name);
+// console.log(req.files.File);
+
+if (req.files.File.name) {
+var temp_file_name = req.files.File.name.split(".");
 console.log(temp_file_name);
     if (temp_file_name[temp_file_name.length - 1] != 'pdf'){
       console.log(temp_file_name[temp_file_name.length - 1]);
         var fs = require("fs");
-        console.log(req.files.file);
-      req.files.file.mv('public/'+req.files.file.name,function (err) {
+        console.log(req.files.File);
+      req.files.File.mv('public/'+req.files.File.name,function (err) {
         if (err){
             return res.status(500).send(err);
           }
@@ -135,10 +144,10 @@ console.log(temp_file_name);
                 Secret: 'O74LtGenyiCOiTZA',
                 File:
                   {
-                    value: fs.createReadStream('public/' + req.files.file.name),
+                  value: fs.createReadStream('public/' + filename),
                     options:
                       {
-                        filename: req.files.file.name,
+                      filename: filename,
                         contentType: null
                       }
                   }
@@ -147,10 +156,11 @@ console.log(temp_file_name);
           console.log(options);
           request(options, function (error, response, body) {
             if(error){ throw new Error(error); 
-            
+              
             }
             else{
               var object = JSON.parse(body);
+              console.log("inside convert api ");
               console.log(body);
               console.log(object.Files[0].FileName);
               var base64 = require('file-base64');
@@ -166,7 +176,7 @@ console.log(temp_file_name);
                 }
                 var finalto = vals.toString();
                 console.log(finalto);
-                var mailmsg = req.body.msg;
+                // var mailmsg = req.body.msg;
 
                 var optionz = {
                   method: 'POST',
@@ -212,7 +222,7 @@ console.log(temp_file_name);
                   }
                 });
 
-                console.log("Length is  : ---- " + invitee_temp.length);
+                console.log("Length is  : ----1 " + invitee_temp.length);
 
 
                 switch (invitee_temp.length) {
@@ -703,10 +713,9 @@ console.log(temp_file_name);
 
                     console.log("PROBLEM IN INVITEES-LENGTH");
                 }
-                console.log(options);
                 request(options, function (error, response, body) {
                   if (error) {
-                    console.log("Error");
+                    console.log("Error"+error);
                     throw new Error(error);
                   } else {
                     console.log("console body is :" + body);
@@ -750,7 +759,7 @@ console.log(temp_file_name);
     }
     var finalto = vals.toString();
     console.log(finalto);
-    var mailmsg = req.body.msg;
+    // var mailmsg = req.body.msg;
 
     var optionz = {
       method: 'POST',
