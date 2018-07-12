@@ -31,6 +31,9 @@ var EsignDocSchema = new Schema({
   },
   revoked: {
     type: String,
+  },
+  filePath: {
+    type: String,
   }
 
 });
