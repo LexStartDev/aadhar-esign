@@ -102,12 +102,19 @@ exports.eSignDoc = function (req, res,next) {
 
     // console.log(req);
   var invitee_temp1 = JSON.parse(req.body.invitees);
+  console.log(invitee_temp1);
+  // var filePath1 = JSON.parse(req.body.invitees.filePath);
   var filedata = req.files.File.data;
   var filename = req.files.File.name;
   var invitee_temp = invitee_temp1.invitees;
-console.log(filename);
+  var filePath = invitee_temp1.filePath;
+// console.log(filename);
+  // console.log(req.files.File);
 
 console.log(invitee_temp);
+  console.log(filePath);
+
+
 
 console.log("inside mail");
 
@@ -1304,10 +1311,12 @@ console.log(temp_file_name);
       } else {
         console.log("console body is :" + body);
         var signRequest = JSON.parse(body);
+
         for (var i = 0; i < signRequest.data.requests.length; i++) {
           var newEsignDoc = new EsignDoc({
             "name": signRequest.data.requests[i].name, "email": signRequest.data.requests[i].email,
-            "signUrl": signRequest.data.requests[i].signUrl, "signed": signRequest.data.requests[i].signed, "rejected": signRequest.data.requests[i].rejected, "revoked": signRequest.data.requests[i].revoked
+            "signUrl": signRequest.data.requests[i].signUrl, "signed": signRequest.data.requests[i].signed, "rejected": signRequest.data.requests[i].rejected, "revoked": signRequest.data.requests[i].revoked,
+            "filePath": filePath
           });
           newEsignDoc.save(function (err) {
             if (err) {
@@ -1432,10 +1441,11 @@ exports.updateEsignDocList = function (req, res) {
 exports.getEsignDocList = function(req,res){
 
     var emailToSearch = req.query.email;
-   EsignDoc.find({email:emailToSearch}).exec(function(err,response){
+   EsignDoc.find({signUrl:emailToSearch}).exec(function(err,response){
       if(err){
           res.status(400).json({status:"fail"});
       } else {
+        console.log(JSON.stringify(response[0].email));
           res.json(response);
       }
    });
@@ -1443,17 +1453,63 @@ exports.getEsignDocList = function(req,res){
 };
 
 exports.eSignDocwebhook = function (req, res) {
- console.log(req);
  console.log(req.body);
- console.log(req.body.requests[0].signUrl);
+
   EsignDoc.update({
     signUrl : req.body.requests[0].signUrl},{ signed: true }).exec(function (err,response){
       if(err){
         console.log(err+ " <== error ");
       }
       else{
-        console.log("done");
-        res.json(response);
+
+        EsignDoc.find({ signUrl : req.body.requests[0].signUrl }).exec(function (err, response) {
+          if (err) {
+            res.status(400).json({ status: "fail" });
+          } else {
+           
+            console.log(response[0].filePath); 
+            var ful = response[0].filePath;
+            var path = ful.split('/')[4] + '_' + ful.split('/')[5];
+            var pdfname = path.split('.')[0] + '.pdf'
+            console.log(pdfname);
+                    console.log("done");
+                    var base64 = require('file-base64');
+                    var base64String = req.body.files[0];
+                    base64.decode(base64String, 'public/pdf/' + pdfname, function (err, output) {
+                      res.json({"success":"success"});
+        })
+
+
+          }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
 
       }
 
