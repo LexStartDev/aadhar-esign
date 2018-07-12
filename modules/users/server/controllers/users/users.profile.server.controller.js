@@ -1454,6 +1454,12 @@ exports.getEsignDocList = function(req,res){
 };
 
 exports.eSignDocwebhook = function (req, res) {
+
+  var path = 'https://lexv2.s3.amazonaws.com/237/41fe5a99527a1bcfcd849f9a19e67c04.docx'
+
+ 
+console.log(pdfname);
+
  console.log(req.body);
   EsignDoc.update({
     signUrl : req.body.requests[0].signUrl},{ signed: true }).exec(function (err,response){
@@ -1469,8 +1475,9 @@ exports.eSignDocwebhook = function (req, res) {
             
             console.log(response[0].filePath); 
             var ful = response[0].filePath;
-            var path = ful.split('/')[4] + '_' + ful.split('/')[5];
-            var pdfname = path.split('.')[0] + '.pdf'
+            var path1 = ful.split('/')[3] + '_' + ful.split('/')[4];
+            console.log(path1);
+            var pdfname = path1.split('.')[0] + '.pdf'
             console.log(pdfname);
                     console.log("done");
                     var base64 = require('file-base64');
@@ -1494,7 +1501,7 @@ exports.eSignDocwebhook = function (req, res) {
                             value: fs.createReadStream('public/pdf/' + pdfname),
                             options:
                             {
-                              filename: path,
+                              filename: pdfname,
                               contentType: null
                             }
                           }
