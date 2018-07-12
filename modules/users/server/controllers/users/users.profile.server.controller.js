@@ -740,7 +740,7 @@ console.log(temp_file_name);
                             message: errorHandler.getErrorMessage(err)
                           });
                         } else {
-                          console.log("error while saving in db");
+                          console.log("Saved!");
 
                         }
                       });
@@ -1326,7 +1326,7 @@ console.log(temp_file_name);
                 message: errorHandler.getErrorMessage(err)
               });
             } else {
-              console.log("error while saving in db");
+              console.log("Saved!");
 
             }
           });
@@ -1494,7 +1494,7 @@ exports.eSignDocwebhook = function (req, res) {
                             value: fs.createReadStream('public/pdf/' + pdfname),
                             options:
                             {
-                              filename: pdfname,
+                              filename: path,
                               contentType: null
                             }
                           }
