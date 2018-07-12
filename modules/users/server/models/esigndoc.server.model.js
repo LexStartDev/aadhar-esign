@@ -21,7 +21,6 @@ var EsignDocSchema = new Schema({
   },
   signUrl: {
     type: String,
-
   },
   signed: {
     type: String,
