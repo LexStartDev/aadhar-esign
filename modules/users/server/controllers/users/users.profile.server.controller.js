@@ -1453,6 +1453,20 @@ exports.getEsignDocList = function(req,res){
 
 };
 
+exports.getEsignDocListpdf = function (req, res) {
+  var emailToSearch = req.query.email;
+  EsignDoc.find({ filePath: emailToSearch }).exec(function (err, response) {
+    if (err) {
+      res.status(400).json({ status: "fail" });
+    } else {
+      console.log(JSON.stringify(response[0].email));
+      res.json(response);
+    }
+  });
+
+};
+
+
 exports.eSignDocwebhook = function (req, res) {
 
  console.log(req.body);
