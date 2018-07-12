@@ -1441,7 +1441,7 @@ exports.updateEsignDocList = function (req, res) {
 exports.getEsignDocList = function(req,res){
 
     var emailToSearch = req.query.email;
-   EsignDoc.find({signUrl:emailToSearch}).exec(function(err,response){
+   EsignDoc.find({email:emailToSearch}).exec(function(err,response){
       if(err){
           res.status(400).json({status:"fail"});
       } else {
@@ -1454,7 +1454,6 @@ exports.getEsignDocList = function(req,res){
 
 exports.eSignDocwebhook = function (req, res) {
  console.log(req.body);
-
   EsignDoc.update({
     signUrl : req.body.requests[0].signUrl},{ signed: true }).exec(function (err,response){
       if(err){
