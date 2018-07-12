@@ -107,7 +107,7 @@ exports.eSignDoc = function (req, res,next) {
   var filedata = req.files.File.data;
   var filename = req.files.File.name;
   var invitee_temp = invitee_temp1.invitees;
-  var filePath = JSON.stringify(invitee_temp1.filePath);
+  var filePath = invitee_temp1.filePath;
 // console.log(filename);
   // console.log(req.files.File);
 
