@@ -1455,11 +1455,6 @@ exports.getEsignDocList = function(req,res){
 
 exports.eSignDocwebhook = function (req, res) {
 
-  var path = 'https://lexv2.s3.amazonaws.com/237/41fe5a99527a1bcfcd849f9a19e67c04.docx'
-
- 
-console.log(pdfname);
-
  console.log(req.body);
   EsignDoc.update({
     signUrl : req.body.requests[0].signUrl},{ signed: true }).exec(function (err,response){
