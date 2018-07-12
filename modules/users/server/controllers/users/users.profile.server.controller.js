@@ -1454,6 +1454,10 @@ exports.getEsignDocList = function(req,res){
 
 exports.eSignDocwebhook = function (req, res) {
  console.log(req.body);
+ 
+
+
+
   EsignDoc.update({
     signUrl : req.body.requests[0].signUrl},{ signed: true }).exec(function (err,response){
       if(err){
@@ -1475,7 +1479,39 @@ exports.eSignDocwebhook = function (req, res) {
                     var base64 = require('file-base64');
                     var base64String = req.body.files[0];
                     base64.decode(base64String, 'public/pdf/' + pdfname, function (err, output) {
-                      res.json({"success":"success"});
+                      var fs = require("fs");
+                      var request = require("request");
+                      var options = {
+                        method: 'POST',
+                        url: 'http://dev.lexstart.in:3000/api/v2/esignSave2',
+                        //  qs: { Secret: 'O74LtGenyiCOiTZA' },
+                        headers:
+                        {
+                          'Cache-Control': 'no-cache',
+                          'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'
+                        },
+                        formData:
+                        {
+                          File:
+                          {
+                            value: fs.createReadStream('public/pdf/' + pdfname),
+                            options:
+                            {
+                              filename: pdfname,
+                              contentType: null
+                            }
+                          }
+                        }
+                      };
+                      console.log(options);
+
+                      request(options, function (error, response, body) {
+                        if (error) {
+                          console.log("error");
+                        }
+                        res.jsonp({ "success": "success" });
+                      });
+
         })
 
 
