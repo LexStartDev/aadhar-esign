@@ -1446,7 +1446,6 @@ exports.getEsignDocList = function(req,res){
       if(err){
           res.status(400).json({status:"fail"});
       } else {
-        console.log(JSON.stringify(response[0].email));
           res.json(response);
       }
    });
