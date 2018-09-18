@@ -155,10 +155,10 @@ console.log(temp_file_name);
             }
             else{
               var object = JSON.parse(body);
-
               console.log("inside convert api");
+              console.log(object);
+              console.log(JSON.stringify(object));
               console.log(object.Files[0].FileName);
-
               var base64 = require('file-base64');
               var base64String = object.Files[0].FileData;
               var pdf_path = object.Files[0].FileName;
