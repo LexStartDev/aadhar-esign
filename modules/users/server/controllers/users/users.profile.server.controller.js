@@ -109,12 +109,8 @@ exports.eSignDoc = function (req, res,next) {
   var filePath = invitee_temp1.filePath;
 
 console.log(invitee_temp);
-  console.log(filePath);
-
-
-
+console.log(filePath);
 console.log("inside mail");
-
 if (req.files.File.name) {
 var temp_file_name = req.files.File.name.split(".");
 console.log(temp_file_name);
@@ -169,7 +165,7 @@ console.log(temp_file_name);
               base64.decode(base64String, 'public/pdf/' + object.Files[0].FileName , function (err, output) {
                 var request = require("request");
                 var vals = [];
-                console.log("inside pdf converted file : ");
+                console.log("inside pdf converted file :");
                 console.log(invitee_temp);
                 for (var i = 0; i < invitee_temp.length; i++) {
                   vals.push(invitee_temp[i].email);
