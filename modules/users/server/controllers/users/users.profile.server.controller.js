@@ -100,7 +100,6 @@ exports.eSignDoc = function (req, res,next) {
   var request = require("request");
     console.log(JSON.stringify(req.body));
 
-    // console.log(req);
   var invitee_temp1 = JSON.parse(req.body.invitees);
   console.log(invitee_temp1);
   // var filePath1 = JSON.parse(req.body.invitees.filePath);
@@ -108,8 +107,6 @@ exports.eSignDoc = function (req, res,next) {
   var filename = req.files.File.name;
   var invitee_temp = invitee_temp1.invitees;
   var filePath = invitee_temp1.filePath;
-// console.log(filename);
-  // console.log(req.files.File);
 
 console.log(invitee_temp);
   console.log(filePath);
@@ -117,11 +114,6 @@ console.log(invitee_temp);
 
 
 console.log("inside mail");
-
-
-// console.log(req.files.File.name);
-// console.log(req.files.File);
-
 
 if (req.files.File.name) {
 var temp_file_name = req.files.File.name.split(".");
@@ -164,19 +156,21 @@ console.log(temp_file_name);
           console.log(options);
           request(options, function (error, response, body) {
             if(error){ throw new Error(error); 
-              
             }
             else{
               var object = JSON.parse(body);
+
               console.log("inside convert api");
-              console.log(body);
               console.log(object.Files[0].FileName);
+
               var base64 = require('file-base64');
               var base64String = object.Files[0].FileData;
               var pdf_path = object.Files[0].FileName;
               base64.decode(base64String, 'public/pdf/' + object.Files[0].FileName , function (err, output) {
                 var request = require("request");
                 var vals = [];
+                console.log("inside pdf converted file : ");
+                console.log(invitee_temp);
                 for (var i = 0; i < invitee_temp.length; i++) {
                   vals.push(invitee_temp[i].email);
                   console.log(invitee_temp[i].email);
