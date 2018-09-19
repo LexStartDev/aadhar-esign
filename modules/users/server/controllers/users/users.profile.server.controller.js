@@ -163,13 +163,13 @@ console.log(temp_file_name);
               console.log(JSON.stringify(object));
               console.log(object.Files[0].FileName);
 
-/*
+
               var base64 = require('file-base64');
               var base64String = object.Files[0].FileData;
               var pdf_path = object.Files[0].FileName;
+              console.log(pdf_path);
               base64.decode(base64String, 'public/pdf/' + object.Files[0].FileName , function (err, output) {
-
-
+                console.log("invitees");
                 var request = require("request");
                 var vals = [];
                 console.log("inside pdf converted file :");
@@ -227,7 +227,7 @@ console.log(temp_file_name);
                         {
                           'files[0].file':
                             {
-                              value: fs.createReadStream('public/pdf/'+pdf_path),
+                              value: fs.createReadStream('public/pdf/'+ pdf_path),
                               options:
                                 {
                                   filename: pdf_path,
@@ -725,7 +725,7 @@ console.log(temp_file_name);
                     return res.status(200).send(body);
                   }
                 });
-              }); */
+              }); 
             }
           });
 
