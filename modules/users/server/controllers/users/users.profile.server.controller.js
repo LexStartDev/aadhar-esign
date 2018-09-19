@@ -151,7 +151,10 @@ console.log(temp_file_name);
           };
           console.log(options);
           request(options, function (error, response, body) {
-            if(error){ throw new Error(error); 
+            if(error){
+            
+              throw new Error(error); 
+              
             }
             else{
               var object = JSON.parse(body);
@@ -159,10 +162,14 @@ console.log(temp_file_name);
               console.log(object);
               console.log(JSON.stringify(object));
               console.log(object.Files[0].FileName);
+
+/*
               var base64 = require('file-base64');
               var base64String = object.Files[0].FileData;
               var pdf_path = object.Files[0].FileName;
               base64.decode(base64String, 'public/pdf/' + object.Files[0].FileName , function (err, output) {
+
+
                 var request = require("request");
                 var vals = [];
                 console.log("inside pdf converted file :");
@@ -718,7 +725,7 @@ console.log(temp_file_name);
                     return res.status(200).send(body);
                   }
                 });
-              });
+              }); */
             }
           });
 
