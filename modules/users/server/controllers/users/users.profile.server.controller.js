@@ -2809,7 +2809,7 @@ exports.eSignTemplateCorner = function (req, res) {
                       contentType: null
                     }
                   },
-                  template_id: path1.split('.')[0]
+                  template_id: path.split('.')[0]
                 }
               };
 
