@@ -1919,6 +1919,7 @@ exports.eSignDoc2 = function (req, res, next) {
 
                     console.log("PROBLEM IN INVITEES-LENGTH");
                 }
+
                 request(options, function (error, response, body) {
                   if (error) {
                     console.log("Error" + error);
@@ -2504,7 +2505,7 @@ exports.eSignDoc2 = function (req, res, next) {
 
           console.log("PROBLEM IN INVITEES-LENGTH");
       }
-      console.log(options);
+      console.log(options); 
       request(options, function (error, response, body) {
         if (error) {
           console.log("Error");
@@ -2776,9 +2777,11 @@ exports.eSignTemplateCorner = function (req, res) {
 
           console.log(response[0].filePath);
           var ful = response[0].filePath;
+          var path1 = ful.split('/')[3] + '_' + ful.split('/')[4];
+
           var pat = ful.split('/');
           var path = pat[pat.length-1].split('.')[0] 
-          var pdfname = 'tempreview_'+ path1.split('.')[0] + '.pdf';
+          var pdfname = 'tempreview_'+ path.split('.')[0] + '.pdf';
           console.log(pdfname);
           console.log("done");
           var base64 = require('file-base64');
