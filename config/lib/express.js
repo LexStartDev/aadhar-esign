@@ -97,10 +97,9 @@ module.exports.initMiddleware = function (app) {
     next();
   });
   // Request body parsing middleware should be above methodOverride
-  app.use(bodyParser.urlencoded({
-    parameterLimit: 500000, limit: '50mb', extended: true 
-  }));
   app.use(bodyParser.json({ limit: '50mb' }));
+  app.use(bodyParser.urlencoded({
+    parameterLimit: 500000, limit: '50mb', extended: true }));
 
   app.use(methodOverride());
 
@@ -176,6 +175,7 @@ module.exports.initHelmetHeaders = function (app) {
 module.exports.initModulesClientRoutes = function (app) {
   // Setting the app router and static folder
   app.use('/', express.static(path.resolve('./public')));
+  app.use('/pdf', express.static(path.resolve('./public/pdf')));
 
   // Globbing static routing
   config.folders.client.forEach(function (staticPath) {

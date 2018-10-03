@@ -33,6 +33,10 @@ var EsignDocSchema = new Schema({
   },
   filePath: {
     type: String,
+  }, 
+  created: {
+    type: Date,
+    default: Date.now
   }
 
 });

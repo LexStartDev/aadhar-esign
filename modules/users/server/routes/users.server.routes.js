@@ -11,11 +11,15 @@ module.exports = function (app) {
   app.route('/api/users/password').post(users.changePassword);
   app.route('/api/users/picture').post(users.changeProfilePicture);
   app.route('/api/esigndoc').post(users.eSignDoc);
+  app.route('/api/esigndoc2').post(users.eSignDoc2);
+
+
   app.route('/api/esigndocupdate').post(users.updateEsignDocList);
   app.route('/api/getEsignDocByEmail').get(users.getEsignDocList);
-    app.route('/api/getEsignDocByEmailpdf').get(users.getEsignDocListpdf);
+  app.route('/api/getEsignDocByEmailpdf').get(users.getEsignDocListpdf);
 
   app.route('/api/webhook').post(users.eSignDocwebhook);
+  app.route('/api/webhook2').post(users.eSignTemplateCorner);
   app.route('/api/eSigncredits').post(users.eSigncredits);
   app.route('/api/eSigncreditsUsage').post(users.eSigncreditsUsage);
   app.route('/api/eSignRecordsListUsed').post(users.eSignRecordsListUsed);
