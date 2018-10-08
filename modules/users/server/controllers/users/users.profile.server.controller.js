@@ -2799,15 +2799,7 @@ exports.eSignTemplateCorner = function (req, res) {
                 },
                 formData:
                 {
-                  document: {
-                    name: path ,
-                    // doc_expiry_date: '2018-10-30T18:30:00.000Z',
-                    // doc_executed_date: '2018-10-19T18:30:00.000Z',
-                    Categories: [
-                      '21'
-                    ],
-                    doc__class_id: '137'
-                  },
+
                   File:
                   {
                     value: fs.createReadStream('public/pdf/' + pdfname),
@@ -2817,7 +2809,16 @@ exports.eSignTemplateCorner = function (req, res) {
                       contentType: null
                     }
                   },
-                  template_id: path
+                  template_id: path,
+                // document: {
+                //     name: path,
+                //     // doc_expiry_date: '2018-10-30T18:30:00.000Z',
+                //     // doc_executed_date: '2018-10-19T18:30:00.000Z',
+                //     Categories: [
+                //       '21'
+                //     ],
+                //     doc__class_id: '137'
+                //   },
                 }
               };
           
