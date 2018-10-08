@@ -2777,11 +2777,11 @@ exports.eSignTemplateCorner = function (req, res) {
 
           console.log(response[0].filePath);
           var ful = response[0].filePath;
-          var path1 = ful.split('/')[3] + '_' + ful.split('/')[4];
+          // var path1 = ful.split('/')[3] + '_' + ful.split('/')[4];
 
           var pat = ful.split('/');
           var path = pat[pat.length-1].split('.')[0] 
-          var pdfname = 'tempreview_'+ path.split('.')[0] + '.pdf';
+          var pdfname = 'tempreview_'+ path + '.pdf';
           console.log(pdfname);
           console.log("done");
           var base64 = require('file-base64');
@@ -2789,6 +2789,14 @@ exports.eSignTemplateCorner = function (req, res) {
           base64.decode(base64String, 'public/pdf/' + pdfname, function (err, output) {
             var fs = require("fs");
             var request = require("request");
+
+            
+
+
+
+
+
+
             if (path1.split('.')[0]){
               var options = {
                 method: 'POST',
@@ -2800,6 +2808,15 @@ exports.eSignTemplateCorner = function (req, res) {
                 },
                 formData:
                 {
+                  document: {
+                    name: path ,
+                    // doc_expiry_date: '2018-10-30T18:30:00.000Z',
+                    // doc_executed_date: '2018-10-19T18:30:00.000Z',
+                    Categories: [
+                      '21'
+                    ],
+                    doc__class_id: '137'
+                  },
                   File:
                   {
                     value: fs.createReadStream('public/pdf/' + pdfname),
