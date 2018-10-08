@@ -2777,7 +2777,7 @@ exports.eSignTemplateCorner = function (req, res) {
 
           console.log(response[0].filePath);
           var ful = response[0].filePath;
-          // var path1 = ful.split('/')[3] + '_' + ful.split('/')[4];
+          var path1 = ful.split('/')[3] + '_' + ful.split('/')[4];
 
           var pat = ful.split('/');
           var path = pat[pat.length-1].split('.')[0] 
@@ -2789,14 +2789,6 @@ exports.eSignTemplateCorner = function (req, res) {
           base64.decode(base64String, 'public/pdf/' + pdfname, function (err, output) {
             var fs = require("fs");
             var request = require("request");
-
-            
-
-
-
-
-
-
             if (path1.split('.')[0]){
               var options = {
                 method: 'POST',
