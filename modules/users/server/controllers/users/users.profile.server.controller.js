@@ -2789,7 +2789,6 @@ exports.eSignTemplateCorner = function (req, res) {
           base64.decode(base64String, 'public/pdf/' + pdfname, function (err, output) {
             var fs = require("fs");
             var request = require("request");
-            if (path1.split('.')[0]){
               var options = {
                 method: 'POST',
                 url: 'http://54.149.125.23:5000/api/v2/esignSave_template_corner',
@@ -2818,35 +2817,10 @@ exports.eSignTemplateCorner = function (req, res) {
                       contentType: null
                     }
                   },
-                  template_id: path.split('.')[0]
+                  template_id: path
                 }
               };
-
-            }
-            if (!path1.split('.')[0]) {
-              var options = {
-                method: 'POST',
-                url: 'http://54.149.125.23:5000/api/v2/esignSave_template_corner',
-                headers:
-                {
-                  'Cache-Control': 'no-cache',
-                  'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'
-                },
-                formData:
-                {
-                  File:
-                  {
-                    value: fs.createReadStream('public/pdf/' + pdfname),
-                    options:
-                    {
-                      filename: pdfname,
-                      contentType: null
-                    }
-                  },
-                }
-              };
-
-            }
+          
             console.log(options);
             request(options, function (error, response, body) {
               if (error) {
