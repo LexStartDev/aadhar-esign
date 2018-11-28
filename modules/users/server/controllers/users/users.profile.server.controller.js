@@ -2759,7 +2759,6 @@ exports.eSignDocwebhook = function (req, res) {
   // });
 };
 
-
 exports.eSignTemplateCorner = function (req, res) {
   console.log(req.body);
   console.log(req.body);
@@ -2771,14 +2770,13 @@ exports.eSignTemplateCorner = function (req, res) {
     }
     else {
       EsignDoc.find({ signUrl: req.body.requests[0].signUrl }).exec(function (err, response) {
-        if (err) {
+      if (err) {
           res.status(400).json({ status: "fail" });
-        } else {
-
+        } 
+      else {
           console.log(response[0].filePath);
           var ful = response[0].filePath;
           var path1 = ful.split('/')[3] + '_' + ful.split('/')[4];
-
           var pat = ful.split('/');
           var path = pat[pat.length-1].split('.')[0] 
           var pdfname = 'tempreview_'+ path + '.pdf';
@@ -2810,6 +2808,9 @@ exports.eSignTemplateCorner = function (req, res) {
                     }
                   },
                   template_id: path,
+                  person_email: response[0].email,
+                  person_name: response[0].name
+
                 // document: {
                 //     name: path,
                 //     // doc_expiry_date: '2018-10-30T18:30:00.000Z',
@@ -2821,7 +2822,6 @@ exports.eSignTemplateCorner = function (req, res) {
                 //   },
                 }
               };
-          
             console.log(options);
             request(options, function (error, response, body) {
               if (error) {
@@ -2829,11 +2829,9 @@ exports.eSignTemplateCorner = function (req, res) {
               }
               res.jsonp({ "success": "success" });
             });
-
           })
         }
       });
     }
   })
-
 }
