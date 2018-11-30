@@ -63,3 +63,6 @@
 .box-title:hover{
   font-weight: bold;
 }
+.alert{
+    display: none;
+}
