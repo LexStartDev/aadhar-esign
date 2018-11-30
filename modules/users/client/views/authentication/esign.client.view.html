@@ -43,8 +43,8 @@
     vertical-align: middle;
   }
 
-  .signin input {
-    max-width: 300px;
+  .signin input , .signin button{
+    max-width: 300px; margin: 0 auto;
   }
 
   .signin ::-webkit-input-placeholder {
@@ -66,6 +66,9 @@
     text-transform: none;
     font-size: 13px;
   }
+  .links-wrapper2 .table{
+    margin-top: 30px;
+  }
 </style>
 <div ng-controller="AuthenticationController">
   <div class="container">
@@ -73,34 +76,34 @@
     <div class="form-wrapper">
       <form name="userForm" ng-submit="esign()" class="signin" novalidate>
         <div class="row">
-          <div class=" col-md-8 form-group" show-errors>
+          <div class=" col-md-12 form-group" show-errors>
             <!-- <label for="email">Email</label>> -->
             <input type="email" id="email" name="email" class="form-control" ng-model="esigndocmodel.email" placeholder="Enter a valid email address"
               lowercase required>
           </div>
-          <div class="col-md-4">
-            <button type="submit" class="btn btn-primary">Search </button>
+          <div class="col-md-12 form-group">
+            <button type="submit" class="btn btn-primary btn-block">Search </button>
           </div>
         </div>
       </form>
     </div>
     <div class="links-wrapper2">
-      <table>
+      <table class="table table-bordered table-striped">
         <thead>
           <tr>
-            <td colspan="3">
-              <h5> {{url2.length}} Records Found ! </h5>
-            </td>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-
             <th>Name</th>
             <th>E-mail</th>
             <th>Time</th>
             <th>Sign-Status</th>
-            <th></th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td colspan="5">
+              <h5> {{url2.length}} Records Found ! </h5>
+            </td>
           </tr>
           <tr ng-repeat="items in url2">
             <td class="td2">{{items.name}}</td>
